@@ -193,8 +193,8 @@ deploys from a private repo, and anyone with the link can open it.
 3. Leave every setting as Netlify fills it: `netlify.toml` at the repo root sets the folder
    (`hearline/frontend`), the build (`npm run build`, `VITE_STATIC_DEMO=1`, Node 22), the output
    (`dist`) and the app routing. **Deploy**.
-4. The site is `https://<name>.netlify.app` (rename it under Site configuration > Change site
-   name). Every push to `main` rebuilds it. Share that link.
+4. The site is **https://hearline.netlify.app** (dashboard snapshot: `/admin.html`); the name is
+   set under Site configuration > Change site name. Every push to `main` rebuilds it.
 
 Also set up, same build: Cloudflare Workers (`hearline/frontend/wrangler.jsonc`, Worker
 `hearline`). Some Spanish internet providers block ranges of Cloudflare addresses (notably
