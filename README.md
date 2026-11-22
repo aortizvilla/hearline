@@ -178,7 +178,7 @@ If you change `models.py`, add a migration: `cd hearline/backend && alembic revi
 
 **Postgres** (needed for more than one worker machine): `pip install -e '.[postgres]'` and set `DATABASE_URL=postgresql+psycopg://user:password@host:5432/hearline`. Job claiming then uses `FOR UPDATE SKIP LOCKED`, and the daily plan uses `INSERT ... ON CONFLICT DO NOTHING`.
 
-## Static demo (Cloudflare Pages, free)
+## Static demo (Cloudflare, free)
 
 A server-free demo of the frontend: the demo listeners' profiles, episodes and audio are saved
 as files and the site reads them instead of the API. No database, no worker, no app keys. It
@@ -188,23 +188,25 @@ deploys from a private repo, and anyone with the link can open it.
    `cd hearline/backend && python -m app.cli export-demo` writes `hearline/frontend/demo-data/`
    (about 17 MB: only the `example.com` demo listeners from `app/dev/demo.py`). Commit it.
    Only demo builds include it; the production build leaves it out.
-2. Free Cloudflare account > **Workers & Pages** > **Create** > **Pages** > **Connect to Git**:
-   pick this GitHub repo (Cloudflare asks GitHub for access to it; private repos work).
+2. Free Cloudflare account > **Workers & Pages** > **Create** > **Import a repository**: pick
+   this GitHub repo (Cloudflare asks GitHub for access to it; private repos work).
 3. Build settings:
 
    | Setting | Value |
    |---|---|
-   | Project name | a non-obvious name, e.g. `hearline-demo-7f3k` (the site is `https://<name>.pages.dev`) |
-   | Production branch | `main` |
-   | Framework preset | None |
-   | Root directory | `hearline/frontend` |
+   | Project name | `hearline-demo-7f3k` (must match `name` in `hearline/frontend/wrangler.jsonc`) |
    | Build command | `npm run build` |
-   | Build output directory | `dist` |
-   | Environment variables | `VITE_STATIC_DEMO` = `1`, `NODE_VERSION` = `22` |
+   | Deploy command | `npx wrangler deploy` |
+   | Root directory | `hearline/frontend` |
+   | Build variables | `VITE_STATIC_DEMO` = `1`, `NODE_VERSION` = `22` |
 
-4. **Save and Deploy**. Every push to `main` then rebuilds the site. Share the `pages.dev` link.
+   `wrangler.jsonc` publishes `dist/` as static files (no Worker code) and serves `index.html`
+   for app paths like `/settings`.
+4. **Deploy**. Every push to `main` then rebuilds the site, at
+   `https://hearline-demo-7f3k.<your-subdomain>.workers.dev` (shown in the Cloudflare dashboard).
+   Share that link.
 5. Optional, to limit it to people you name: Cloudflare Zero Trust > Access > add an application
-   for the `pages.dev` address with the emails allowed (free up to 50 users; they get a
+   for the site's address with the emails allowed (free up to 50 users; they get a
    one-time code by email).
 
 Sign in with a demo email (`sofia@example.com`, `lucia@example.com`, `mateo@example.com`,

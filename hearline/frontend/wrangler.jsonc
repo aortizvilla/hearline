@@ -1,0 +1,12 @@
+// Cloudflare Workers static site for the server-free demo (Workers Builds runs `npm run build`
+// with VITE_STATIC_DEMO=1, then `npx wrangler deploy`). Only static files are served: no Worker
+// code, no keys. "name" must match the Worker's name in the Cloudflare dashboard.
+{
+  "name": "hearline-demo-7f3k",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    // React Router: unknown paths (/settings, /topics/film) get index.html
+    "not_found_handling": "single-page-application"
+  }
+}

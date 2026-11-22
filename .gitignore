@@ -22,6 +22,7 @@ hearline/backend/storage/archive/
 # Node
 node_modules/
 dist/
+.wrangler/
 *.tsbuildinfo
 
 # OS / editor
