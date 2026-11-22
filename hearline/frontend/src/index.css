@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Hearline brand: one teal scale (the film's subject hue), a paper background and a book serif
+   for headings, shared by the landing page, the app and the admin dashboard. */
+@theme {
+  --color-brand-50: #eef4f7;
+  --color-brand-100: #d9e7ee;
+  --color-brand-200: #b5cfdc;
+  --color-brand-300: #8db4c7;
+  --color-brand-400: #5f93ad;
+  --color-brand-500: #3f7896;
+  --color-brand-600: #2f5d7a;
+  --color-brand-700: #264c64;
+  --color-brand-800: #1f3d50;
+  --color-brand-900: #192f3d;
+  --color-brand-950: #0f1d26;
+  --color-accent: #d0573a; /* only for "playing now" */
+  --color-neutral-50: #f5f4ef; /* page paper */
+  --color-neutral-950: #12161a;
+  --font-serif: "Newsreader", Georgia, serif;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Chart colors (admin dashboard): series slot 1 and the status pair, stepped for each theme. */
+:root {
+  --series-1: #2a78d6;
+  --good: #0ca30c;
+  --warning: #fab219;
+  --critical: #d03b3b;
+  --previous: #9a9890; /* the dashed previous-period line */
+}
+html.dark {
+  --series-1: #3987e5;
+  --previous: #7d7c76;
+}

@@ -1,0 +1,19 @@
+# Clip tone presets: the tones Settings offers. Kept to 4 so the clip cache
+# (story x tone x language x voice) stays small: every tone is another script and recording of
+# every story. Every offered tone is a real preset (no tone that silently plays as another).
+# `aliases` maps old or external tone names onto a preset; they are accepted, never offered.
+default: conversational
+presets:
+  conversational:
+    label: Conversational
+    instructions: Warm and natural, like a well-informed friend. Contractions are fine. Plain words.
+  formal:
+    label: Formal
+    instructions: Measured, neutral broadcast-news register. No slang, no jokes.
+  energetic:
+    label: Energetic
+    instructions: Upbeat and brisk. Short punchy sentences. Enthusiastic but never hyperbolic about facts.
+  calm:
+    label: Calm
+    instructions: Slow, gentle and reassuring. Longer flowing sentences, no exclamations.
+aliases: {}

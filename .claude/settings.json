@@ -1,0 +1,12 @@
+{
+  "enabledPlugins": {
+    "frontend-design@anthropic-plugin-directory": true,
+    "playwright@anthropic-plugin-directory": true,
+    "feature-dev@anthropic-plugin-directory": true,
+    "deepeval@anthropic-plugin-directory": true,
+    "pyright-lsp@anthropic-plugin-directory": true,
+    "typescript-lsp@anthropic-plugin-directory": true,
+    "security-guidance@anthropic-plugin-directory": true,
+    "claude-code-setup@anthropic-plugin-directory": true
+  }
+}

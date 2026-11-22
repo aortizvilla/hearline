@@ -1,0 +1,9 @@
+# Languages offered in Settings. `value` is what is stored in the database.
+# Tones: prompts/tones.yaml (presets + aliases). Voices: config/voices.yaml.
+languages:
+  - {value: en, label: English}
+  - {value: es, label: Español}
+  - {value: fr, label: Français}
+  - {value: de, label: Deutsch}
+  - {value: it, label: Italiano}
+  - {value: pt, label: Português}

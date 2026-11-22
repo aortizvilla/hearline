@@ -1,0 +1,55 @@
+# Seed topic registry. Topics are deliberately broad so many users share one research run;
+# niche interests ("rust programming", "F1") become keyword filters on a broader topic.
+# key: stable id; parent: optional parent key; aliases: phrases that resolve without any LLM call.
+- {key: world, display_name: World News, aliases: [world, international, global news, world affairs]}
+- {key: politics, display_name: Politics, aliases: [politics, government, elections]}
+- {key: us-politics, display_name: US Politics, parent: politics, aliases: [us politics, american politics, congress, white house]}
+- {key: europe, display_name: Europe, parent: world, aliases: [europe, european union, eu]}
+- {key: latin-america, display_name: Latin America, parent: world, aliases: [latin america, latam, south america]}
+- {key: asia, display_name: Asia, parent: world, aliases: [asia, china, japan, india]}
+- {key: middle-east, display_name: Middle East, parent: world, aliases: [middle east, mideast]}
+- {key: africa, display_name: Africa, parent: world, aliases: [africa]}
+- {key: business, display_name: Business, aliases: [business, companies, corporate news]}
+- {key: economy, display_name: Economy, aliases: [economy, economics, inflation, macroeconomics]}
+- {key: markets, display_name: Markets & Investing, aliases: [markets, stock market, stocks, investing, wall street]}
+- {key: personal-finance, display_name: Personal Finance, aliases: [personal finance, money, saving, mortgages]}
+- {key: startups, display_name: Startups & Venture Capital, aliases: [startups, venture capital, vc, entrepreneurship]}
+- {key: crypto, display_name: Crypto & Web3, aliases: [crypto, cryptocurrency, bitcoin, ethereum, blockchain, web3]}
+- {key: technology, display_name: Technology, aliases: [technology, tech, tech news, gadgets]}
+- {key: ai, display_name: Artificial Intelligence, parent: technology, aliases: [ai, artificial intelligence, machine learning, ml, llms, generative ai]}
+- {key: software, display_name: Software Development, parent: technology, aliases: [software, programming, software engineering, developers, coding]}
+- {key: cybersecurity, display_name: Cybersecurity, parent: technology, aliases: [cybersecurity, security, infosec, hacking, data breaches]}
+- {key: consumer-tech, display_name: Consumer Tech, parent: technology, aliases: [consumer tech, smartphones, apple, android]}
+- {key: gaming, display_name: Video Games, aliases: [gaming, video games, games, esports]}
+- {key: science, display_name: Science, aliases: [science, research, discoveries]}
+- {key: space, display_name: Space, parent: science, aliases: [space, astronomy, nasa, spacex, space exploration]}
+- {key: physics, display_name: Physics, parent: science, aliases: [physics, quantum physics, particle physics]}
+- {key: biology, display_name: Biology & Genetics, parent: science, aliases: [biology, genetics, genomics, evolution]}
+- {key: health, display_name: Health, aliases: [health, medicine, healthcare, public health]}
+- {key: fitness, display_name: Fitness & Wellness, parent: health, aliases: [fitness, wellness, exercise, nutrition]}
+- {key: mental-health, display_name: Mental Health, parent: health, aliases: [mental health, psychology, wellbeing]}
+- {key: climate, display_name: Climate & Environment, aliases: [climate, climate change, environment, sustainability, global warming]}
+- {key: energy, display_name: Energy, aliases: [energy, renewable energy, oil and gas, solar, nuclear power]}
+- {key: transportation, display_name: Cars & Transportation, aliases: [cars, automotive, electric vehicles, evs, transportation]}
+- {key: sports, display_name: Sports, aliases: [sports, sport]}
+- {key: soccer, display_name: Soccer, parent: sports, aliases: [soccer, football, premier league, la liga, champions league]}
+- {key: basketball, display_name: Basketball, parent: sports, aliases: [basketball, nba, wnba]}
+- {key: american-football, display_name: American Football, parent: sports, aliases: [american football, nfl]}
+- {key: tennis, display_name: Tennis, parent: sports, aliases: [tennis, atp, wta]}
+- {key: motorsport, display_name: Motorsport, parent: sports, aliases: [motorsport, motor racing, racing]}
+- {key: entertainment, display_name: Entertainment, aliases: [entertainment, celebrities, pop culture]}
+- {key: film-tv, display_name: Film & TV, parent: entertainment, aliases: [film, movies, cinema, tv, television, streaming]}
+- {key: music, display_name: Music, parent: entertainment, aliases: [music, albums, concerts]}
+- {key: books, display_name: Books, aliases: [books, literature, reading]}
+- {key: art-design, display_name: Art & Design, aliases: [art, design, architecture, museums]}
+- {key: food, display_name: Food & Drink, aliases: [food, cooking, restaurants, recipes, drink]}
+- {key: travel, display_name: Travel, aliases: [travel, tourism, airlines]}
+- {key: fashion, display_name: Fashion, aliases: [fashion, style, clothing]}
+- {key: education, display_name: Education, aliases: [education, schools, universities, higher education]}
+- {key: law, display_name: Law & Justice, aliases: [law, legal, courts, supreme court, justice]}
+- {key: real-estate, display_name: Real Estate, aliases: [real estate, housing, property]}
+- {key: media, display_name: Media & Journalism, aliases: [media, journalism, news industry]}
+- {key: work, display_name: Work & Careers, aliases: [work, careers, jobs, labor market, remote work]}
+- {key: history, display_name: History, aliases: [history, archaeology]}
+- {key: parenting, display_name: Parenting & Family, aliases: [parenting, family, kids]}
+- {key: pets, display_name: Pets & Animals, aliases: [pets, animals, wildlife, dogs, cats]}

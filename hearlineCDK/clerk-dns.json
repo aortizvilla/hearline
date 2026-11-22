@@ -1,0 +1,4 @@
+{
+  "_comment": "Clerk dashboard -> Domains: the CNAME records of your production instance, as name (without the domain) -> target. Filled in after creating the Clerk production instance.",
+  "records": {}
+}

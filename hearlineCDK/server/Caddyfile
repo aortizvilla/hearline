@@ -1,0 +1,9 @@
+# HTTPS for origin.<domain> (Let's Encrypt, automatic). Only CloudFront knows the secret
+# header, so the API can't be reached around CloudFront.
+{$ORIGIN_DOMAIN} {
+	@cloudfront header X-Origin-Verify {$ORIGIN_SECRET}
+	handle @cloudfront {
+		reverse_proxy api:8000
+	}
+	respond 403
+}

@@ -1,0 +1,41 @@
+# Hearline CI: every push and pull request runs the backend tests and lint, the frontend
+# type-check, build and tests, and the offline AWS stack test. No secrets needed: every
+# external service (LLM, voices, AWS) is mocked or built offline.
+name: CI
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-24.04
+    defaults: { run: { working-directory: hearline/backend } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13", cache: pip, cache-dependency-path: hearline/backend/pyproject.toml }
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+      - run: pip install -e ".[dev,openai,embeddings-onnx]"
+      - run: ruff check app tests
+      - run: pytest -q
+
+  frontend:
+    runs-on: ubuntu-24.04
+    defaults: { run: { working-directory: hearline/frontend } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm, cache-dependency-path: hearline/frontend/package-lock.json }
+      - run: npm ci
+      - run: npm run build      # tsc --noEmit + vite build (product and admin apps)
+      - run: npm test
+
+  infrastructure:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13" }
+      - run: pip install -r hearlineCDK/cdk/requirements.txt -r hearlineCDK/cdk/requirements-dev.txt
+      - run: bash -n hearlineCDK/deploy.sh && bash -n hearlineCDK/server/update.sh && bash -n hearlineCDK/server/bootstrap.sh
+      - run: python -m pytest -q hearlineCDK/cdk

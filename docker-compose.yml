@@ -1,0 +1,52 @@
+# Local stack shaped like production: Postgres + migrate + API + worker (one backend image).
+#   docker compose up --build
+# Frontend: `cd hearline/frontend && npm run dev` (proxies /api and /audio to the API on :8000).
+# Keys and models come from hearline/backend/.env; the settings below override it for this stack.
+
+x-backend: &backend
+  build: ./hearline/backend
+  image: hearline-backend
+  env_file: hearline/backend/.env
+  environment:
+    DATABASE_URL: postgresql+psycopg://hearline:hearline@db:5432/hearline
+  volumes:
+    - audio:/app/storage/audio   # API and worker share audio files (local storage mode)
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: hearline
+      POSTGRES_PASSWORD: hearline
+      POSTGRES_DB: hearline
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hearline"]
+      interval: 5s
+      retries: 10
+
+  migrate:
+    <<: *backend
+    command: ["python", "-m", "app.cli", "migrate"]
+    depends_on:
+      db: {condition: service_healthy}
+
+  api:
+    <<: *backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
+  worker:
+    <<: *backend
+    command: ["python", "-m", "app.jobs.worker"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
+volumes:
+  pgdata: {}
+  audio: {}

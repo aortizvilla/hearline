@@ -1,0 +1,35 @@
+# Secrets / local config
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Local data
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+hearline/backend/storage/audio/*
+!hearline/backend/storage/audio/.gitkeep
+hearline/backend/storage/eval/
+hearline/backend/storage/archive/
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# deploy: generated keys, CDK output
+hearlineCDK/.secrets/
+hearlineCDK/cdk/.venv/
+hearlineCDK/cdk/cdk.out/

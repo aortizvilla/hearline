@@ -1,0 +1,122 @@
+# Interest catalog shown in Settings. labels: the name in each other interface language
+# (English is `label`); a missing language shows English.
+- slug: technology
+  label: Technology
+  labels: {es: "Tecnología", fr: "Technologie", de: "Technologie", it: "Tecnologia", pt: "Tecnologia"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/HONDA_ASIMO.jpg/330px-HONDA_ASIMO.jpg
+- slug: science
+  label: Science
+  labels: {es: "Ciencia", fr: "Sciences", de: "Wissenschaft", it: "Scienza", pt: "Ciência"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Ukrainian_microscope_%28cropped%29.jpg/330px-Ukrainian_microscope_%28cropped%29.jpg
+- slug: space
+  label: Space
+  labels: {es: "Espacio", fr: "Espace", de: "Weltraum", it: "Spazio", pt: "Espaço"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/NGC_4414_%28NASA-med%29.jpg/330px-NGC_4414_%28NASA-med%29.jpg
+- slug: health
+  label: Health
+  labels: {es: "Salud", fr: "Santé", de: "Gesundheit", it: "Salute", pt: "Saúde"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Stethoscope-2.png/330px-Stethoscope-2.png
+- slug: environment
+  label: Environment
+  labels: {es: "Medio ambiente", fr: "Environnement", de: "Umwelt", it: "Ambiente", pt: "Meio ambiente"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Chiapas_Rainforest_crop.jpg/330px-Chiapas_Rainforest_crop.jpg
+- slug: business
+  label: Business
+  labels: {es: "Negocios", fr: "Économie", de: "Wirtschaft", it: "Economia", pt: "Negócios"}
+  image: https://thumb.wikimedia.org/wikipedia/en/thumb/9/93/Burj_Khalifa.jpg/330px-Burj_Khalifa.jpg
+- slug: politics
+  label: Politics
+  labels: {es: "Política", fr: "Politique", de: "Politik", it: "Politica", pt: "Política"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Palace_of_Westminster_as_seen_from_Westminster_Bridge.jpg/330px-Palace_of_Westminster_as_seen_from_Westminster_Bridge.jpg
+- slug: world
+  label: World
+  labels: {es: "Mundo", fr: "Monde", de: "Welt", it: "Mondo", pt: "Mundo"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Meteosat-12-fci-march-equinox-2025-noon.jpg/330px-Meteosat-12-fci-march-equinox-2025-noon.jpg
+- slug: sports
+  label: Sports
+  labels: {es: "Deportes", fr: "Sport", de: "Sport", it: "Sport", pt: "Esportes"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Football_in_Bloomington%2C_Indiana%2C_1995.jpg/330px-Football_in_Bloomington%2C_Indiana%2C_1995.jpg
+- slug: entertainment
+  label: Entertainment
+  labels: {es: "Entretenimiento", fr: "Divertissement", de: "Unterhaltung", it: "Intrattenimento", pt: "Entretenimento"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/ACL2009SBH.jpg/330px-ACL2009SBH.jpg
+- slug: film
+  label: Film
+  labels: {es: "Cine", fr: "Cinéma", de: "Film", it: "Cinema", pt: "Cinema"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/IMAX_camera_1.jpg/330px-IMAX_camera_1.jpg
+- slug: music
+  label: Music
+  labels: {es: "Música", fr: "Musique", de: "Musik", it: "Musica", pt: "Música"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Steinway_Vienna_002.JPG/330px-Steinway_Vienna_002.JPG
+- slug: books
+  label: Books
+  labels: {es: "Libros", fr: "Livres", de: "Bücher", it: "Libri", pt: "Livros"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/SanDiegoCityCollegeLearningResource_-_bookshelf.jpg/330px-SanDiegoCityCollegeLearningResource_-_bookshelf.jpg
+- slug: gaming
+  label: Gaming
+  labels: {es: "Videojuegos", fr: "Jeux vidéo", de: "Videospiele", it: "Videogiochi", pt: "Videogames"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Magnavox-Odyssey-Console-Set.jpg/330px-Magnavox-Odyssey-Console-Set.jpg
+- slug: travel
+  label: Travel
+  labels: {es: "Viajes", fr: "Voyages", de: "Reisen", it: "Viaggi", pt: "Viagens"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/United_Airlines_Boeing_777-200_Meulemans.jpg/330px-United_Airlines_Boeing_777-200_Meulemans.jpg
+- slug: food
+  label: Food
+  labels: {es: "Gastronomía", fr: "Cuisine", de: "Essen & Trinken", it: "Cucina", pt: "Gastronomia"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Pizza-3007395.jpg/330px-Pizza-3007395.jpg
+- slug: fashion
+  label: Fashion
+  labels: {es: "Moda", fr: "Mode", de: "Mode", it: "Moda", pt: "Moda"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Diane_von_F%C3%BCrstenberg_Spring-Summer_2014_06.jpg/330px-Diane_von_F%C3%BCrstenberg_Spring-Summer_2014_06.jpg
+- slug: art
+  label: Art & Design
+  labels: {es: "Arte", fr: "Art", de: "Kunst", it: "Arte", pt: "Arte"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/330px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg
+- slug: education
+  label: Education
+  labels: {es: "Educación", fr: "Éducation", de: "Bildung", it: "Istruzione", pt: "Educação"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Elementary_classroom_in_Alaska.jpg/330px-Elementary_classroom_in_Alaska.jpg
+- slug: history
+  label: History
+  labels: {es: "Historia", fr: "Histoire", de: "Geschichte", it: "Storia", pt: "História"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/330px-Colosseo_2020.jpg
+- slug: ai
+  label: Artificial Intelligence
+  labels: {es: "Inteligencia artificial", fr: "Intelligence artificielle", de: "Künstliche Intelligenz", it: "Intelligenza artificiale", pt: "Inteligência artificial"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/330px-Colored_neural_network.svg.png
+- slug: crypto
+  label: Crypto
+  labels: {es: "Criptomonedas", fr: "Cryptomonnaies", de: "Kryptowährungen", it: "Criptovalute", pt: "Criptomoedas"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/330px-Bitcoin.svg.png
+- slug: personal-finance
+  label: Personal Finance
+  labels: {es: "Finanzas personales", fr: "Finances personnelles", de: "Persönliche Finanzen", it: "Finanza personale", pt: "Finanças pessoais"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Sparschwein_Haspa02.jpg/330px-Sparschwein_Haspa02.jpg
+- slug: cybersecurity
+  label: Cybersecurity
+  labels: {es: "Ciberseguridad", fr: "Cybersécurité", de: "Cybersicherheit", it: "Sicurezza informatica", pt: "Cibersegurança"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Padlock_kl%C3%B3dka_ubt.JPG/330px-Padlock_kl%C3%B3dka_ubt.JPG
+- slug: fitness
+  label: Fitness
+  labels: {es: "Fitness", fr: "Fitness", de: "Fitness", it: "Fitness", pt: "Fitness"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/USMC-Rich_Froning_Jr.jpg/330px-USMC-Rich_Froning_Jr.jpg
+- slug: mental-health
+  label: Mental Health
+  labels: {es: "Salud mental", fr: "Santé mentale", de: "Psychische Gesundheit", it: "Salute mentale", pt: "Saúde mental"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Psi_with_Rod_of_Asclepius.svg/330px-Psi_with_Rod_of_Asclepius.svg.png
+- slug: parenting
+  label: Parenting
+  labels: {es: "Crianza", fr: "Parentalité", de: "Elternschaft", it: "Genitorialità", pt: "Parentalidade"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Baby_Sofia.jpg/330px-Baby_Sofia.jpg
+- slug: pets
+  label: Pets
+  labels: {es: "Mascotas", fr: "Animaux de compagnie", de: "Haustiere", it: "Animali domestici", pt: "Animais de estimação"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Huskiesatrest.jpg/330px-Huskiesatrest.jpg
+- slug: real-estate
+  label: Real Estate
+  labels: {es: "Inmobiliario", fr: "Immobilier", de: "Immobilien", it: "Immobiliare", pt: "Imóveis"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Katsura_Imperial_Villa_in_Spring.jpg/330px-Katsura_Imperial_Villa_in_Spring.jpg
+- slug: law
+  label: Law
+  labels: {es: "Derecho", fr: "Droit", de: "Recht", it: "Diritto", pt: "Direito"}
+  image: https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/CourtGavel.JPG/330px-CourtGavel.JPG

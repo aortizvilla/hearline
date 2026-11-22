@@ -1,0 +1,218 @@
+# Suggested subcategories per topic, shown in Settings as one-tap chips under each topic
+# (listeners can still type their own; step 1 classifies those). Loaded into dim_subtopic on
+# startup (seed_subtopics in app/pipeline/step1_topics.py), marked `suggested`.
+# Keyed by pipeline topic key (config/seed_topics.yaml), not the Settings slug.
+# keywords: lowercase terms that tag a story as this subcategory (whole-word match on headline
+# and summary). Avoid generic words ("deal", "season", "release"): they tag the wrong stories.
+# labels: the name in each other interface language (English is `label`).
+# A key already created by a listener (e.g. cannes-film-festival) is merged, not duplicated.
+
+technology:
+  - {label: Smartphones, keywords: [smartphone, smartphones, iphone, android, galaxy phone], labels: {es: "Smartphones", fr: "Smartphones", de: "Smartphones", it: "Smartphone", pt: "Smartphones"}}
+  - {label: Semiconductors, keywords: [semiconductor, semiconductors, chipmaker, tsmc, intel, chips act], labels: {es: "Semiconductores", fr: "Semi-conducteurs", de: "Halbleiter", it: "Semiconduttori", pt: "Semicondutores"}}
+  - {label: Social media, keywords: [social media, tiktok, instagram, facebook, youtube], labels: {es: "Redes sociales", fr: "Réseaux sociaux", de: "Soziale Medien", it: "Social media", pt: "Redes sociais"}}
+  - {label: Big Tech antitrust, keywords: [antitrust, big tech, monopoly, ftc, competition authority], labels: {es: "Antimonopolio y Big Tech", fr: "Antitrust et Big Tech", de: "Kartellrecht und Big Tech", it: "Antitrust e Big Tech", pt: "Antitruste e Big Tech"}}
+  - {label: Electric vehicles, keywords: [electric vehicle, electric vehicles, ev, evs, tesla, ev battery], labels: {es: "Vehículos eléctricos", fr: "Véhicules électriques", de: "Elektroautos", it: "Veicoli elettrici", pt: "Veículos elétricos"}}
+
+ai:
+  - {label: Generative AI, keywords: [generative ai, chatgpt, chatbot, large language model, llm, gemini, claude], labels: {es: "IA generativa", fr: "IA générative", de: "Generative KI", it: "IA generativa", pt: "IA generativa"}}
+  - {label: AI regulation, keywords: [ai act, ai regulation, ai safety, ai policy, ai law], labels: {es: "Regulación de la IA", fr: "Régulation de l'IA", de: "KI-Regulierung", it: "Regolamentazione dell'IA", pt: "Regulação da IA"}}
+  - {label: AI chip industry, keywords: [ai chips, gpu, gpus, nvidia, ai accelerators], labels: {es: "Industria de chips de IA", fr: "Industrie des puces IA", de: "KI-Chipindustrie", it: "Industria dei chip per l'IA", pt: "Indústria de chips de IA"}}
+  - {label: Robotics, keywords: [robot, robots, robotics, humanoid], labels: {es: "Robótica", fr: "Robotique", de: "Robotik", it: "Robotica", pt: "Robótica"}}
+  - {label: AI in healthcare, keywords: [medical ai, ai diagnosis, ai in healthcare, ai drug discovery], labels: {es: "IA en la salud", fr: "IA en santé", de: "KI im Gesundheitswesen", it: "IA in sanità", pt: "IA na saúde"}}
+
+science:
+  - {label: Physics, keywords: [physics, physicists, particle, quantum, cern], labels: {es: "Física", fr: "Physique", de: "Physik", it: "Fisica", pt: "Física"}}
+  - {label: Genetics, keywords: [gene, genes, genetic, genetics, dna, crispr, genome], labels: {es: "Genética", fr: "Génétique", de: "Genetik", it: "Genetica", pt: "Genética"}}
+  - {label: Neuroscience, keywords: [neuroscience, brain, neurons, neuroscientists], labels: {es: "Neurociencia", fr: "Neurosciences", de: "Neurowissenschaft", it: "Neuroscienze", pt: "Neurociência"}}
+  - {label: Evolution and fossils, keywords: [evolution, fossil, fossils, dinosaur, dinosaurs], labels: {es: "Evolución y fósiles", fr: "Évolution et fossiles", de: "Evolution und Fossilien", it: "Evoluzione e fossili", pt: "Evolução e fósseis"}}
+  - {label: Chemistry, keywords: [chemistry, chemists, molecule, molecules], labels: {es: "Química", fr: "Chimie", de: "Chemie", it: "Chimica", pt: "Química"}}
+
+space:
+  - {label: Mars exploration, keywords: [mars, martian, mars rover, perseverance], labels: {es: "Exploración de Marte", fr: "Exploration de Mars", de: "Mars-Erkundung", it: "Esplorazione di Marte", pt: "Exploração de Marte"}}
+  - {label: Moon missions, keywords: [moon, lunar, artemis], labels: {es: "Misiones a la Luna", fr: "Missions lunaires", de: "Mondmissionen", it: "Missioni lunari", pt: "Missões à Lua"}}
+  - {label: Rocket launches, keywords: [spacex, starship, rocket launch, falcon 9, blue origin], labels: {es: "Lanzamientos de cohetes", fr: "Lancements de fusées", de: "Raketenstarts", it: "Lanci di razzi", pt: "Lançamentos de foguetes"}}
+  - {label: Telescopes and astronomy, keywords: [telescope, webb, jwst, exoplanet, galaxy, astronomers], labels: {es: "Telescopios y astronomía", fr: "Télescopes et astronomie", de: "Teleskope und Astronomie", it: "Telescopi e astronomia", pt: "Telescópios e astronomia"}}
+  - {label: Space stations, keywords: [iss, space station, tiangong, astronauts], labels: {es: "Estaciones espaciales", fr: "Stations spatiales", de: "Raumstationen", it: "Stazioni spaziali", pt: "Estações espaciais"}}
+
+health:
+  - {label: Vaccines, keywords: [vaccine, vaccines, vaccination, immunization], labels: {es: "Vacunas", fr: "Vaccins", de: "Impfstoffe", it: "Vaccini", pt: "Vacinas"}}
+  - {label: Cancer research, keywords: [cancer, tumor, tumour, oncology, chemotherapy], labels: {es: "Investigación del cáncer", fr: "Recherche sur le cancer", de: "Krebsforschung", it: "Ricerca sul cancro", pt: "Pesquisa sobre câncer"}}
+  - {label: Nutrition, keywords: [nutrition, diet, obesity, ultra processed], labels: {es: "Nutrición", fr: "Nutrition", de: "Ernährung", it: "Nutrizione", pt: "Nutrição"}}
+  - {label: Outbreaks and public health, keywords: [outbreak, pandemic, epidemic, who, cdc, public health], labels: {es: "Brotes y salud pública", fr: "Épidémies et santé publique", de: "Ausbrüche und öffentliche Gesundheit", it: "Epidemie e salute pubblica", pt: "Surtos e saúde pública"}}
+  - {label: New treatments, keywords: [clinical trial, fda approval, new treatment, new drug], labels: {es: "Nuevos tratamientos", fr: "Nouveaux traitements", de: "Neue Behandlungen", it: "Nuove terapie", pt: "Novos tratamentos"}}
+
+climate:
+  - {label: Climate policy, keywords: [cop, climate summit, emissions, paris agreement, net zero, carbon], labels: {es: "Política climática", fr: "Politique climatique", de: "Klimapolitik", it: "Politica climatica", pt: "Política climática"}}
+  - {label: Renewable energy, keywords: [solar, wind power, renewable, renewables, clean energy], labels: {es: "Energías renovables", fr: "Énergies renouvelables", de: "Erneuerbare Energien", it: "Energie rinnovabili", pt: "Energias renováveis"}}
+  - {label: Extreme weather, keywords: [hurricane, wildfire, wildfires, flood, floods, heatwave, drought], labels: {es: "Fenómenos meteorológicos extremos", fr: "Phénomènes météo extrêmes", de: "Extremwetter", it: "Eventi meteo estremi", pt: "Eventos climáticos extremos"}}
+  - {label: Wildlife and biodiversity, keywords: [wildlife, biodiversity, endangered, extinction, species], labels: {es: "Fauna y biodiversidad", fr: "Faune et biodiversité", de: "Tierwelt und Artenvielfalt", it: "Fauna e biodiversità", pt: "Vida selvagem e biodiversidade"}}
+  - {label: Oceans, keywords: [ocean, oceans, coral, marine, sea level], labels: {es: "Océanos", fr: "Océans", de: "Ozeane", it: "Oceani", pt: "Oceanos"}}
+
+business:
+  - {label: Earnings, keywords: [earnings, quarterly results, profit, revenue], labels: {es: "Resultados empresariales", fr: "Résultats d'entreprises", de: "Quartalszahlen", it: "Risultati aziendali", pt: "Resultados das empresas"}}
+  - {label: Mergers and acquisitions, keywords: [merger, mergers, acquisition, acquisitions, takeover], labels: {es: "Fusiones y adquisiciones", fr: "Fusions et acquisitions", de: "Fusionen und Übernahmen", it: "Fusioni e acquisizioni", pt: "Fusões e aquisições"}}
+  - {label: Startups and venture capital, keywords: [startup, startups, venture capital, funding round, unicorn], labels: {es: "Startups y capital riesgo", fr: "Start-up et capital-risque", de: "Start-ups und Risikokapital", it: "Startup e venture capital", pt: "Startups e capital de risco"}}
+  - {label: Retail, keywords: [retail, retailer, retailers, consumer spending, e commerce], labels: {es: "Comercio minorista", fr: "Commerce de détail", de: "Einzelhandel", it: "Commercio al dettaglio", pt: "Varejo"}}
+  - {label: Jobs and labor, keywords: [layoffs, hiring, strike, union, unemployment, jobs report], labels: {es: "Empleo y trabajo", fr: "Emploi et travail", de: "Arbeitsmarkt", it: "Lavoro e occupazione", pt: "Emprego e trabalho"}}
+
+politics:
+  - {label: Elections, keywords: [election, elections, ballot, polls, campaign, voters], labels: {es: "Elecciones", fr: "Élections", de: "Wahlen", it: "Elezioni", pt: "Eleições"}}
+  - {label: Congress, keywords: [congress, senate, house of representatives, lawmakers], labels: {es: "Congreso", fr: "Congrès", de: "Kongress", it: "Congresso", pt: "Congresso"}}
+  - {label: White House, keywords: [white house, executive order, the president], labels: {es: "Casa Blanca", fr: "Maison-Blanche", de: "Weißes Haus", it: "Casa Bianca", pt: "Casa Branca"}}
+  - {label: Supreme Court, keywords: [supreme court, justices], labels: {es: "Corte Suprema", fr: "Cour suprême", de: "Oberster Gerichtshof", it: "Corte Suprema", pt: "Suprema Corte"}}
+  - {label: Immigration, keywords: [immigration, border, migrants, asylum, deportation], labels: {es: "Inmigración", fr: "Immigration", de: "Einwanderung", it: "Immigrazione", pt: "Imigração"}}
+
+world:
+  - {label: Middle East, keywords: [middle east, israel, gaza, iran, saudi, syria, lebanon], labels: {es: "Oriente Medio", fr: "Moyen-Orient", de: "Naher Osten", it: "Medio Oriente", pt: "Oriente Médio"}}
+  - {label: Ukraine and Russia, keywords: [ukraine, russia, kremlin, kyiv, putin, zelensky], labels: {es: "Ucrania y Rusia", fr: "Ukraine et Russie", de: "Ukraine und Russland", it: "Ucraina e Russia", pt: "Ucrânia e Rússia"}}
+  - {label: China, keywords: [china, beijing, xi jinping, taiwan], labels: {es: "China", fr: "Chine", de: "China", it: "Cina", pt: "China"}}
+  - {label: European Union, keywords: [european union, eu, brussels, european commission], labels: {es: "Unión Europea", fr: "Union européenne", de: "Europäische Union", it: "Unione europea", pt: "União Europeia"}}
+  - {label: Latin America, keywords: [latin america, mexico, brazil, argentina, venezuela, colombia], labels: {es: "América Latina", fr: "Amérique latine", de: "Lateinamerika", it: "America Latina", pt: "América Latina"}}
+
+sports:
+  - {label: Soccer, keywords: [soccer, premier league, champions league, la liga, fifa, world cup], labels: {es: "Fútbol", fr: "Football", de: "Fußball", it: "Calcio", pt: "Futebol"}}
+  - {label: Basketball, keywords: [nba, basketball, wnba], labels: {es: "Baloncesto", fr: "Basket-ball", de: "Basketball", it: "Pallacanestro", pt: "Basquete"}}
+  - {label: Tennis, keywords: [tennis, wimbledon, grand slam, us open tennis], labels: {es: "Tenis", fr: "Tennis", de: "Tennis", it: "Tennis", pt: "Tênis"}}
+  - {label: Formula 1, keywords: [formula 1, formula one, f1, grand prix], labels: {es: "Fórmula 1", fr: "Formule 1", de: "Formel 1", it: "Formula 1", pt: "Fórmula 1"}}
+  - {label: Olympics, keywords: [olympics, olympic, paralympics], labels: {es: "Juegos Olímpicos", fr: "Jeux olympiques", de: "Olympische Spiele", it: "Olimpiadi", pt: "Jogos Olímpicos"}}
+
+entertainment:
+  - {label: Streaming, keywords: [netflix, disney plus, hbo, streaming service, prime video], labels: {es: "Streaming", fr: "Streaming", de: "Streaming", it: "Streaming", pt: "Streaming"}}
+  - {label: Award shows, keywords: [grammys, emmys, golden globes, award show, awards ceremony], labels: {es: "Galas de premios", fr: "Cérémonies de récompenses", de: "Preisverleihungen", it: "Cerimonie di premiazione", pt: "Premiações"}}
+  - {label: Celebrities, keywords: [celebrity, celebrities, hollywood star], labels: {es: "Celebridades", fr: "Célébrités", de: "Prominente", it: "Celebrità", pt: "Celebridades"}}
+  - {label: Television series, keywords: [tv series, television series, showrunner, renewed for], labels: {es: "Series de televisión", fr: "Séries télévisées", de: "Fernsehserien", it: "Serie TV", pt: "Séries de TV"}}
+  - {label: Theater, keywords: [broadway, theater, theatre, west end, musical], labels: {es: "Teatro", fr: "Théâtre", de: "Theater", it: "Teatro", pt: "Teatro"}}
+
+film-tv:
+  - {key: cannes-film-festival, label: Cannes Film Festival, keywords: [cannes, festival de cannes, palme d or, cannes film festival], labels: {es: "Festival de Cannes", fr: "Festival de Cannes", de: "Filmfestspiele von Cannes", it: "Festival di Cannes", pt: "Festival de Cannes"}}
+  - {key: academy-awards, label: Academy Awards, keywords: [oscars, oscar, academy awards, best picture], labels: {es: "Premios Óscar", fr: "Oscars", de: "Oscarverleihung", it: "Premi Oscar", pt: "Oscar"}}
+  - {label: Box office, keywords: [box office, opening weekend, ticket sales], labels: {es: "Taquilla", fr: "Box-office", de: "Kinokassen", it: "Botteghino", pt: "Bilheteria"}}
+  - {label: Superhero films, keywords: [marvel, superhero, avengers, dc studios, batman, spider man], labels: {es: "Películas de superhéroes", fr: "Films de super-héros", de: "Superheldenfilme", it: "Film di supereroi", pt: "Filmes de super-heróis"}}
+  - {label: Film festivals, keywords: [film festival, venice film festival, sundance, berlinale, toronto film festival], labels: {es: "Festivales de cine", fr: "Festivals de cinéma", de: "Filmfestivals", it: "Festival del cinema", pt: "Festivais de cinema"}}
+
+music:
+  - {label: Tours and concerts, keywords: [concert, concerts, world tour, concert tour, setlist], labels: {es: "Giras y conciertos", fr: "Tournées et concerts", de: "Tourneen und Konzerte", it: "Tour e concerti", pt: "Turnês e shows"}}
+  - {label: New albums, keywords: [new album, album, new single, debut album], labels: {es: "Nuevos álbumes", fr: "Nouveaux albums", de: "Neue Alben", it: "Nuovi album", pt: "Novos álbuns"}}
+  - {label: Grammys, keywords: [grammy, grammys], labels: {es: "Premios Grammy", fr: "Grammy Awards", de: "Grammys", it: "Grammy", pt: "Grammy"}}
+  - {label: Hip-hop, keywords: [hip hop, rap, rapper], labels: {es: "Hip-hop", fr: "Hip-hop", de: "Hip-Hop", it: "Hip hop", pt: "Hip-hop"}}
+  - {label: Classical music, keywords: [orchestra, symphony, opera, classical music, conductor], labels: {es: "Música clásica", fr: "Musique classique", de: "Klassische Musik", it: "Musica classica", pt: "Música clássica"}}
+
+books:
+  - {label: New novels, keywords: [new novel, debut novel, novelist], labels: {es: "Novelas nuevas", fr: "Nouveaux romans", de: "Neue Romane", it: "Nuovi romanzi", pt: "Novos romances"}}
+  - {label: Literary prizes, keywords: [booker prize, pulitzer, nobel prize in literature, literary prize], labels: {es: "Premios literarios", fr: "Prix littéraires", de: "Literaturpreise", it: "Premi letterari", pt: "Prêmios literários"}}
+  - {label: Bestsellers, keywords: [bestseller, best seller, bestselling], labels: {es: "Superventas", fr: "Best-sellers", de: "Bestseller", it: "Bestseller", pt: "Mais vendidos"}}
+  - {label: Publishing industry, keywords: [publisher, publishers, publishing], labels: {es: "Industria editorial", fr: "Édition", de: "Verlagswesen", it: "Editoria", pt: "Mercado editorial"}}
+  - {label: Book adaptations, keywords: [adaptation, based on the novel, based on the book], labels: {es: "Adaptaciones de libros", fr: "Adaptations de livres", de: "Buchverfilmungen", it: "Adattamenti di libri", pt: "Adaptações de livros"}}
+
+gaming:
+  - {label: Nintendo, keywords: [nintendo, switch 2, mario, zelda, pokemon], labels: {es: "Nintendo", fr: "Nintendo", de: "Nintendo", it: "Nintendo", pt: "Nintendo"}}
+  - {label: PlayStation, keywords: [playstation, ps5, sony interactive], labels: {es: "PlayStation", fr: "PlayStation", de: "PlayStation", it: "PlayStation", pt: "PlayStation"}}
+  - {label: Xbox, keywords: [xbox, game pass], labels: {es: "Xbox", fr: "Xbox", de: "Xbox", it: "Xbox", pt: "Xbox"}}
+  - {label: Esports, keywords: [esports, league of legends, counter strike, valorant], labels: {es: "Esports", fr: "E-sport", de: "E-Sport", it: "Esport", pt: "Esports"}}
+  - {label: PC gaming, keywords: [steam, pc gaming, valve], labels: {es: "Juegos de PC", fr: "Jeu sur PC", de: "PC-Gaming", it: "Giochi per PC", pt: "Jogos de PC"}}
+
+travel:
+  - {label: Airlines and flights, keywords: [airline, airlines, flight, flights, airport, airports], labels: {es: "Aerolíneas y vuelos", fr: "Compagnies aériennes et vols", de: "Airlines und Flüge", it: "Compagnie aeree e voli", pt: "Companhias aéreas e voos"}}
+  - {label: Hotels, keywords: [hotel, hotels, resort, airbnb], labels: {es: "Hoteles", fr: "Hôtels", de: "Hotels", it: "Hotel", pt: "Hotéis"}}
+  - {label: Visas and passports, keywords: [visa, visas, passport, passports, travel ban, entry rules], labels: {es: "Visados y pasaportes", fr: "Visas et passeports", de: "Visa und Reisepässe", it: "Visti e passaporti", pt: "Vistos e passaportes"}}
+  - {label: Cruises, keywords: [cruise, cruises, cruise ship], labels: {es: "Cruceros", fr: "Croisières", de: "Kreuzfahrten", it: "Crociere", pt: "Cruzeiros"}}
+  - {label: Overtourism, keywords: [overtourism, tourist tax, tourist numbers], labels: {es: "Turismo masivo", fr: "Surtourisme", de: "Übertourismus", it: "Overtourism", pt: "Turismo excessivo"}}
+
+food:
+  - {label: Restaurants and chefs, keywords: [restaurant, restaurants, chef, chefs, michelin], labels: {es: "Restaurantes y chefs", fr: "Restaurants et chefs", de: "Restaurants und Köche", it: "Ristoranti e chef", pt: "Restaurantes e chefs"}}
+  - {label: Recipes and cooking, keywords: [recipe, recipes, cooking, baking], labels: {es: "Recetas y cocina", fr: "Recettes et cuisine", de: "Rezepte und Kochen", it: "Ricette e cucina", pt: "Receitas e culinária"}}
+  - {label: Wine, keywords: [wine, wines, vineyard, winemaker, sommelier], labels: {es: "Vino", fr: "Vin", de: "Wein", it: "Vino", pt: "Vinho"}}
+  - {label: Food prices, keywords: [food prices, grocery prices, groceries, food inflation], labels: {es: "Precios de los alimentos", fr: "Prix alimentaires", de: "Lebensmittelpreise", it: "Prezzi alimentari", pt: "Preços dos alimentos"}}
+  - {label: Plant-based food, keywords: [vegan, plant based, meat alternatives, vegetarian], labels: {es: "Alimentación vegetal", fr: "Alimentation végétale", de: "Pflanzliche Ernährung", it: "Alimentazione vegetale", pt: "Alimentação à base de plantas"}}
+
+fashion:
+  - {label: Fashion weeks, keywords: [fashion week, runway, catwalk], labels: {es: "Semanas de la moda", fr: "Fashion weeks", de: "Modewochen", it: "Settimane della moda", pt: "Semanas de moda"}}
+  - {label: Luxury brands, keywords: [luxury, gucci, louis vuitton, chanel, lvmh, hermes], labels: {es: "Marcas de lujo", fr: "Marques de luxe", de: "Luxusmarken", it: "Marchi di lusso", pt: "Marcas de luxo"}}
+  - {label: Sustainable fashion, keywords: [sustainable fashion, fast fashion, secondhand, resale], labels: {es: "Moda sostenible", fr: "Mode durable", de: "Nachhaltige Mode", it: "Moda sostenibile", pt: "Moda sustentável"}}
+  - {label: Sneakers, keywords: [sneakers, nike, adidas], labels: {es: "Zapatillas", fr: "Sneakers", de: "Sneaker", it: "Sneaker", pt: "Tênis"}}
+  - {label: Designers, keywords: [designer, creative director, couture], labels: {es: "Diseñadores", fr: "Créateurs", de: "Designer", it: "Stilisti", pt: "Estilistas"}}
+
+art-design:
+  - {label: Museums and exhibitions, keywords: [museum, museums, exhibition, exhibitions, gallery], labels: {es: "Museos y exposiciones", fr: "Musées et expositions", de: "Museen und Ausstellungen", it: "Musei e mostre", pt: "Museus e exposições"}}
+  - {label: Art auctions, keywords: [auction, auctions, christie s, sotheby s], labels: {es: "Subastas de arte", fr: "Ventes aux enchères d'art", de: "Kunstauktionen", it: "Aste d'arte", pt: "Leilões de arte"}}
+  - {label: Architecture, keywords: [architecture, architect, architects], labels: {es: "Arquitectura", fr: "Architecture", de: "Architektur", it: "Architettura", pt: "Arquitetura"}}
+  - {label: Street art, keywords: [street art, graffiti, mural, banksy], labels: {es: "Arte urbano", fr: "Street art", de: "Street-Art", it: "Street art", pt: "Arte urbana"}}
+  - {label: Photography, keywords: [photography, photographer, photographers], labels: {es: "Fotografía", fr: "Photographie", de: "Fotografie", it: "Fotografia", pt: "Fotografia"}}
+
+education:
+  - {label: Universities, keywords: [university, universities, college, campus], labels: {es: "Universidades", fr: "Universités", de: "Universitäten", it: "Università", pt: "Universidades"}}
+  - {label: Student debt, keywords: [student loans, student debt, tuition], labels: {es: "Deuda estudiantil", fr: "Dette étudiante", de: "Studienschulden", it: "Debito studentesco", pt: "Dívida estudantil"}}
+  - {label: Schools and teachers, keywords: [teachers, classroom, public schools, school district], labels: {es: "Escuelas y docentes", fr: "Écoles et enseignants", de: "Schulen und Lehrkräfte", it: "Scuole e insegnanti", pt: "Escolas e professores"}}
+  - {label: Education technology, keywords: [edtech, online learning, ai in schools], labels: {es: "Tecnología educativa", fr: "Technologies éducatives", de: "Bildungstechnologie", it: "Tecnologia per l'istruzione", pt: "Tecnologia educacional"}}
+  - {label: Admissions and exams, keywords: [admissions, sat, entrance exam, exam results], labels: {es: "Admisiones y exámenes", fr: "Admissions et examens", de: "Zulassung und Prüfungen", it: "Ammissioni ed esami", pt: "Admissões e exames"}}
+
+history:
+  - {label: Ancient Rome, keywords: [ancient rome, roman empire, romans, pompeii, caesar], labels: {es: "Antigua Roma", fr: "Rome antique", de: "Antikes Rom", it: "Antica Roma", pt: "Roma Antiga"}}
+  - {label: Ancient Egypt, keywords: [ancient egypt, pharaoh, pyramid, pyramids, mummy], labels: {es: "Antiguo Egipto", fr: "Égypte antique", de: "Altes Ägypten", it: "Antico Egitto", pt: "Egito Antigo"}}
+  - {label: World War II, keywords: [world war ii, second world war, wwii, holocaust, nazi], labels: {es: "Segunda Guerra Mundial", fr: "Seconde Guerre mondiale", de: "Zweiter Weltkrieg", it: "Seconda guerra mondiale", pt: "Segunda Guerra Mundial"}}
+  - {label: Archaeological discoveries, keywords: [archaeologists, archaeological, excavation, excavated], labels: {es: "Descubrimientos arqueológicos", fr: "Découvertes archéologiques", de: "Archäologische Funde", it: "Scoperte archeologiche", pt: "Descobertas arqueológicas"}}
+  - {label: Medieval history, keywords: [medieval, middle ages, vikings, viking, castle], labels: {es: "Historia medieval", fr: "Histoire médiévale", de: "Mittelalter", it: "Storia medievale", pt: "História medieval"}}
+
+crypto:
+  - {label: Bitcoin, keywords: [bitcoin, btc], labels: {es: "Bitcoin", fr: "Bitcoin", de: "Bitcoin", it: "Bitcoin", pt: "Bitcoin"}}
+  - {label: Ethereum, keywords: [ethereum, ether], labels: {es: "Ethereum", fr: "Ethereum", de: "Ethereum", it: "Ethereum", pt: "Ethereum"}}
+  - {label: Crypto regulation, keywords: [crypto regulation, sec, stablecoin law, crypto bill], labels: {es: "Regulación cripto", fr: "Régulation des cryptos", de: "Krypto-Regulierung", it: "Regolamentazione delle cripto", pt: "Regulação de cripto"}}
+  - {label: Stablecoins, keywords: [stablecoin, stablecoins, usdc, tether], labels: {es: "Stablecoins", fr: "Stablecoins", de: "Stablecoins", it: "Stablecoin", pt: "Stablecoins"}}
+  - {label: Crypto exchanges, keywords: [coinbase, binance, crypto exchange], labels: {es: "Exchanges de criptomonedas", fr: "Plateformes d'échange crypto", de: "Kryptobörsen", it: "Exchange di criptovalute", pt: "Corretoras de cripto"}}
+
+personal-finance:
+  - {label: Mortgages, keywords: [mortgage, mortgages, mortgage rates], labels: {es: "Hipotecas", fr: "Prêts immobiliers", de: "Hypotheken", it: "Mutui", pt: "Financiamento imobiliário"}}
+  - {label: Retirement, keywords: [retirement, pension, pensions, 401 k], labels: {es: "Jubilación", fr: "Retraite", de: "Ruhestand", it: "Pensione", pt: "Aposentadoria"}}
+  - {label: Taxes, keywords: [tax, taxes, irs, tax return], labels: {es: "Impuestos", fr: "Impôts", de: "Steuern", it: "Tasse", pt: "Impostos"}}
+  - {label: Credit cards and debt, keywords: [credit card, credit cards, household debt], labels: {es: "Tarjetas de crédito y deudas", fr: "Cartes de crédit et dettes", de: "Kreditkarten und Schulden", it: "Carte di credito e debiti", pt: "Cartões de crédito e dívidas"}}
+  - {label: Investing basics, keywords: [index fund, index funds, etf, etfs, savings account], labels: {es: "Inversión básica", fr: "Bases de l'investissement", de: "Grundlagen der Geldanlage", it: "Basi dell'investimento", pt: "Noções de investimento"}}
+
+cybersecurity:
+  - {label: Ransomware, keywords: [ransomware], labels: {es: "Ransomware", fr: "Rançongiciels", de: "Ransomware", it: "Ransomware", pt: "Ransomware"}}
+  - {label: Data breaches, keywords: [data breach, breach, leaked data, hacked], labels: {es: "Filtraciones de datos", fr: "Fuites de données", de: "Datenlecks", it: "Violazioni di dati", pt: "Vazamentos de dados"}}
+  - {label: Privacy, keywords: [privacy, surveillance, data protection, gdpr], labels: {es: "Privacidad", fr: "Vie privée", de: "Datenschutz", it: "Privacy", pt: "Privacidade"}}
+  - {label: State-sponsored hacking, keywords: [state sponsored, cyber espionage, cyberattack, nation state hackers], labels: {es: "Ciberataques de Estados", fr: "Piratage étatique", de: "Staatliches Hacking", it: "Hacking statale", pt: "Ataques hackers de Estados"}}
+  - {label: Scams and phishing, keywords: [scam, scams, phishing, fraud], labels: {es: "Estafas y phishing", fr: "Arnaques et hameçonnage", de: "Betrug und Phishing", it: "Truffe e phishing", pt: "Golpes e phishing"}}
+
+fitness:
+  - {label: Running, keywords: [marathon, runner, runners, running shoes], labels: {es: "Running", fr: "Course à pied", de: "Laufen", it: "Corsa", pt: "Corrida"}}
+  - {label: Strength training, keywords: [strength training, weightlifting, gym, muscle], labels: {es: "Entrenamiento de fuerza", fr: "Musculation", de: "Krafttraining", it: "Allenamento di forza", pt: "Musculação"}}
+  - {label: Yoga, keywords: [yoga], labels: {es: "Yoga", fr: "Yoga", de: "Yoga", it: "Yoga", pt: "Ioga"}}
+  - {label: Cycling, keywords: [cycling, cyclist, tour de france, bike], labels: {es: "Ciclismo", fr: "Cyclisme", de: "Radsport", it: "Ciclismo", pt: "Ciclismo"}}
+  - {label: Sleep and recovery, keywords: [sleep, recovery, rest days], labels: {es: "Sueño y recuperación", fr: "Sommeil et récupération", de: "Schlaf und Regeneration", it: "Sonno e recupero", pt: "Sono e recuperação"}}
+
+mental-health:
+  - {label: Anxiety, keywords: [anxiety, anxious], labels: {es: "Ansiedad", fr: "Anxiété", de: "Angst", it: "Ansia", pt: "Ansiedade"}}
+  - {label: Depression, keywords: [depression, antidepressant, antidepressants], labels: {es: "Depresión", fr: "Dépression", de: "Depression", it: "Depressione", pt: "Depressão"}}
+  - {label: Therapy, keywords: [therapy, therapist, counseling, psychotherapy], labels: {es: "Terapia", fr: "Thérapie", de: "Therapie", it: "Terapia", pt: "Terapia"}}
+  - {label: Mindfulness, keywords: [mindfulness, meditation], labels: {es: "Mindfulness", fr: "Pleine conscience", de: "Achtsamkeit", it: "Mindfulness", pt: "Atenção plena"}}
+  - {label: Digital wellbeing, keywords: [screen time, social media addiction, digital detox], labels: {es: "Bienestar digital", fr: "Bien-être numérique", de: "Digitales Wohlbefinden", it: "Benessere digitale", pt: "Bem-estar digital"}}
+
+parenting:
+  - {label: Babies and toddlers, keywords: [baby, babies, toddler, toddlers, infant], labels: {es: "Bebés y niños pequeños", fr: "Bébés et tout-petits", de: "Babys und Kleinkinder", it: "Neonati e bambini piccoli", pt: "Bebês e crianças pequenas"}}
+  - {label: Teenagers, keywords: [teenagers, teens, adolescents], labels: {es: "Adolescentes", fr: "Adolescents", de: "Jugendliche", it: "Adolescenti", pt: "Adolescentes"}}
+  - {label: Childcare, keywords: [childcare, daycare, parental leave], labels: {es: "Cuidado infantil", fr: "Garde d'enfants", de: "Kinderbetreuung", it: "Assistenza all'infanzia", pt: "Cuidados infantis"}}
+  - {label: Kids and screens, keywords: [screen time, kids online, children online], labels: {es: "Niños y pantallas", fr: "Enfants et écrans", de: "Kinder und Bildschirme", it: "Bambini e schermi", pt: "Crianças e telas"}}
+  - {label: Schooling, keywords: [homework, school year, schooling], labels: {es: "Escolarización", fr: "Scolarité", de: "Schule", it: "Scuola", pt: "Vida escolar"}}
+
+pets:
+  - {label: Dogs, keywords: [dog, dogs, puppy, puppies], labels: {es: "Perros", fr: "Chiens", de: "Hunde", it: "Cani", pt: "Cães"}}
+  - {label: Cats, keywords: [cat, cats, kitten, kittens], labels: {es: "Gatos", fr: "Chats", de: "Katzen", it: "Gatti", pt: "Gatos"}}
+  - {label: Pet health, keywords: [veterinarian, vet, vets, pet health], labels: {es: "Salud de las mascotas", fr: "Santé des animaux", de: "Tiergesundheit", it: "Salute degli animali", pt: "Saúde dos pets"}}
+  - {label: Adoption and shelters, keywords: [animal shelter, pet adoption, rescue animals, shelter], labels: {es: "Adopción y refugios", fr: "Adoption et refuges", de: "Adoption und Tierheime", it: "Adozioni e rifugi", pt: "Adoção e abrigos"}}
+  - {label: Exotic pets, keywords: [exotic pets, reptiles, parrots, snakes], labels: {es: "Mascotas exóticas", fr: "Animaux exotiques", de: "Exotische Haustiere", it: "Animali esotici", pt: "Pets exóticos"}}
+
+real-estate:
+  - {label: Housing market, keywords: [housing market, home prices, house prices, home sales], labels: {es: "Mercado de la vivienda", fr: "Marché immobilier", de: "Wohnungsmarkt", it: "Mercato immobiliare", pt: "Mercado imobiliário"}}
+  - {label: Mortgage rates, keywords: [mortgage rates, mortgage], labels: {es: "Tipos hipotecarios", fr: "Taux immobiliers", de: "Hypothekenzinsen", it: "Tassi dei mutui", pt: "Juros de financiamento"}}
+  - {label: Rentals, keywords: [rent, rents, renters, landlord, landlords], labels: {es: "Alquileres", fr: "Locations", de: "Mieten", it: "Affitti", pt: "Aluguéis"}}
+  - {label: Commercial real estate, keywords: [commercial real estate, office space, office vacancy], labels: {es: "Inmuebles comerciales", fr: "Immobilier commercial", de: "Gewerbeimmobilien", it: "Immobili commerciali", pt: "Imóveis comerciais"}}
+  - {label: Housing policy, keywords: [zoning, affordable housing, housing policy], labels: {es: "Política de vivienda", fr: "Politique du logement", de: "Wohnungspolitik", it: "Politiche abitative", pt: "Política habitacional"}}
+
+law:
+  - {label: Supreme Court, keywords: [supreme court, justices], labels: {es: "Corte Suprema", fr: "Cour suprême", de: "Oberster Gerichtshof", it: "Corte Suprema", pt: "Suprema Corte"}}
+  - {label: Criminal trials, keywords: [verdict, jury, sentenced, criminal trial, convicted], labels: {es: "Juicios penales", fr: "Procès pénaux", de: "Strafprozesse", it: "Processi penali", pt: "Julgamentos criminais"}}
+  - {label: Tech and AI law, keywords: [copyright, ai lawsuit, tech lawsuit, antitrust trial], labels: {es: "Derecho tecnológico e IA", fr: "Droit du numérique et de l'IA", de: "Technik- und KI-Recht", it: "Diritto della tecnologia e dell'IA", pt: "Direito digital e IA"}}
+  - {label: Human rights, keywords: [human rights, civil rights, civil liberties], labels: {es: "Derechos humanos", fr: "Droits humains", de: "Menschenrechte", it: "Diritti umani", pt: "Direitos humanos"}}
+  - {label: International law, keywords: [international court, icc, icj, war crimes], labels: {es: "Derecho internacional", fr: "Droit international", de: "Völkerrecht", it: "Diritto internazionale", pt: "Direito internacional"}}

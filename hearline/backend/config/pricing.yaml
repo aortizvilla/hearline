@@ -1,0 +1,36 @@
+# USD prices. LLM: per 1M tokens. Web search: per 1,000 searches. TTS: per 1M characters.
+# Unknown models fall back to `default` (a deliberately conservative estimate) with a warning.
+llm:
+  claude-opus-5-5:   {input: 4.00, output: 20.00, cache_write: 5.00, cache_read: 0.20}
+  claude-sonnet-5-5: {input: 2.00, output: 10.00, cache_write: 2.50, cache_read: 0.10}
+  claude-haiku-5-5:  {input: 0.10, output: 0.50,  cache_write: 0.125, cache_read: 0.01}
+  claude-fable-5-2:  {input: 8.00, output: 40.00, cache_write: 10.00, cache_read: 0.20}
+  # OpenAI (developers.openai.com/api/docs/pricing, checked 2026-11-22). Dated snapshot names
+  # such as gpt-5.4-mini-2026-03-17 are matched to these by prefix. Batch = 50% off (below).
+  gpt-6.2-astra:     {input: 8.00, output: 40.00, cache_read: 0.40}
+  gpt-5.4-mini:      {input: 0.75, output: 4.50,  cache_read: 0.075}
+  gpt-5.4-nano:      {input: 0.20, output: 1.25,  cache_read: 0.02}
+  gpt-5-mini:        {input: 0.25, output: 2.00,  cache_read: 0.025}
+  gpt-5-nano:        {input: 0.05, output: 0.40,  cache_read: 0.005}
+  default:           {input: 5.00, output: 25.00, cache_write: 6.25, cache_read: 0.50}
+web_search_per_1k:
+  anthropic: 10.00
+  openai: 10.00
+  mock: 10.00
+batch_discount: 0.5
+tts_per_1m_chars:
+  # Key = the TTS provider's name. Unknown keys fall back to `default` with a warning.
+  mock: 16.00        # priced like a typical cloud neural voice so offline runs are realistic
+  say: 0.00          # local macOS speech synthesis
+  # Amazon Polly by engine (aws.amazon.com/polly/pricing). Neural: 1M chars/month free, 1st year
+  polly-standard: 4.00
+  polly-neural: 16.00
+  polly-generative: 30.00
+  polly-long-form: 100.00
+  # ElevenLabs API by model (elevenlabs.io/pricing/api, checked 2026-11-22: $0.05 / $0.10 per
+  # 1K chars; ElevenLabs pages disagree, so this uses the higher, newer figure)
+  elevenlabs-eleven_flash_v2_5: 50.00
+  elevenlabs-eleven_turbo_v2_5: 50.00
+  elevenlabs-eleven_multilingual_v2: 100.00
+  elevenlabs-eleven_v3: 100.00
+  default: 100.00    # conservative, so an unpriced voice never looks free

@@ -1,0 +1,36 @@
+# Subscription plans. Each limit maps to a cost lever (see README "Plans"):
+#  - voices / tones: every extra (voice x tone x language) combo is a new recording of each
+#    story, so Free shares two voices (female + male) and one tone with everyone
+#  - max_topics / max_topic_minutes / max_episode_minutes: how much audio is assembled
+#  - subtopics: each new subcategory is classified once by the small LLM
+# Lists use "all" for no restriction; null max_topics = the whole catalog.
+# price_usd_month is shown in the UI only: there is no billing yet (Subscription page).
+default: free
+plans:
+  free:
+    label: Free
+    price_usd_month: 0
+    max_topics: 2
+    max_topic_minutes: 5
+    max_episode_minutes: 15
+    subtopics: false
+    voices: [aria, leo]
+    tones: [conversational]
+  plus:
+    label: Plus
+    price_usd_month: 4.99
+    max_topics: 8
+    max_topic_minutes: 10
+    max_episode_minutes: 30
+    subtopics: true
+    voices: all
+    tones: all
+  pro:
+    label: Pro
+    price_usd_month: 9.99
+    max_topics: null
+    max_topic_minutes: 20
+    max_episode_minutes: 60
+    subtopics: true
+    voices: all
+    tones: all

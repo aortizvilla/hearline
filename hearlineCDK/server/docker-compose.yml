@@ -1,0 +1,65 @@
+# Production on one server: Postgres + API + worker + Caddy (HTTPS for CloudFront).
+# Variables come from .env, written by update.sh; app settings from hearline.env.
+x-backend: &backend
+  image: ${HEARLINE_IMAGE}
+  env_file: hearline.env
+  restart: unless-stopped
+  volumes:
+    - audio:/app/storage/audio   # local cache; S3 holds the real copies
+  logging: &logs
+    driver: awslogs
+    options:
+      awslogs-region: ${AWS_REGION}
+      awslogs-group: ${LOG_GROUP}
+      tag: "{{.Name}}"
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: hearline
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: hearline
+    volumes:
+      - /var/lib/hearline/postgres:/var/lib/postgresql/data   # on the snapshotted disk
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hearline"]
+      interval: 5s
+      retries: 20
+    logging: *logs
+
+  migrate:
+    <<: *backend
+    restart: "no"
+    command: ["python", "-m", "app.cli", "migrate"]
+    depends_on:
+      db: {condition: service_healthy}
+
+  api:
+    <<: *backend
+    depends_on:
+      db: {condition: service_healthy}
+
+  worker:
+    <<: *backend
+    command: ["python", "-m", "app.jobs.worker"]
+    depends_on:
+      db: {condition: service_healthy}
+
+  caddy:
+    image: caddy:2.8.4-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    environment:
+      ORIGIN_DOMAIN: ${ORIGIN_DOMAIN}
+      ORIGIN_SECRET: ${ORIGIN_SECRET}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy:/data          # Let's Encrypt certificate
+    depends_on: [api]
+    logging: *logs
+
+volumes:
+  audio: {}
+  caddy: {}

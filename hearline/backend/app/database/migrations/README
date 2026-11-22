@@ -1,0 +1,10 @@
+Database migrations (Alembic, configured in pyproject.toml [tool.alembic]). Every change to
+app/database/models.py needs one:
+
+    cd hearline/backend
+    alembic revision --autogenerate -m "what changed"   # then read the generated file
+    python -m app.cli migrate                             # apply (also runs on startup)
+
+app/database/migrate.py decides what to do with each database: new ones are created from the
+models and marked current; ones created before migrations existed are marked as the baseline
+(0001) and then upgraded.

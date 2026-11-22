@@ -1,0 +1,192 @@
+# Content pipeline tuning. Model names and keys come from the environment (.env), prices from
+# pricing.yaml, tone presets from prompts/tones.yaml.
+
+topics:
+  match_threshold: 0.75        # cosine similarity for an automatic embedding match
+  llm_candidates: 5            # nearest topics shown to the LLM when resolution is ambiguous
+  niche_as_keyword: true       # "child_of" decisions become keyword filters on the broad topic
+  research_keyword_hints: 10   # subscriber subcategories + keywords passed to shared research
+  max_subtopics: 5             # focus subcategories a listener can add per topic (Film > Cannes)
+  # New phrases a listener can have classified by the LLM per UTC day (topics + subcategories).
+  # Catalog topics and phrases seen before are free and never count. Also refused once the
+  # pipeline's daily budget is spent, so Settings can't run up model costs.
+  max_new_phrases_per_day: 20
+
+research:
+  # Plural sourcing: at most this many stories per outlet per research call; other outlets that
+  # reported a story are kept (up to max_other_sources) and named in its script.
+  max_per_source: 2
+  max_other_sources: 3
+  verify_urls: true            # drop links that aren't one article (section/tag pages) or are dead
+  relevance_check: true        # one small-model call per research run drops off-topic stories
+  # Source quality: ranking weight per outlet domain when episodes are put together (a domain
+  # covers its subdomains). Pre-filled only with an objective group, international news
+  # agencies and public-service broadcasters (1.2). Unlisted outlets weigh 1.0. To demote an
+  # outlet, add it below 1.0 (an editorial decision), e.g. "example-tabloid.com: 0.6"; to
+  # never use it, add it to search.blocked_domains instead.
+  source_weights:
+    reuters.com: 1.2
+    apnews.com: 1.2
+    afp.com: 1.2
+    efe.com: 1.2
+    ansa.it: 1.2
+    dpa.com: 1.2
+    bbc.com: 1.2
+    bbc.co.uk: 1.2
+    npr.org: 1.2
+    pbs.org: 1.2
+    dw.com: 1.2
+    rtve.es: 1.2
+    francetvinfo.fr: 1.2
+    radio-canada.ca: 1.2
+    tagesschau.de: 1.2
+    rainews.it: 1.2
+    rtp.pt: 1.2
+    agenciabrasil.ebc.com.br: 1.2
+  background_terms: 2          # Wikipedia context per story for terms a listener may not know
+  english_outlets: [Reuters, Associated Press, BBC News, The Guardian, The New York Times,
+                    Financial Times, Bloomberg, NPR, Al Jazeera, The Economist]
+  # Local-language research: each topic is also researched in every language below that its
+  # active listeners use, in that language's own outlets. Cost: one more research call per
+  # (topic, language) in use per day. Remove a language to give its listeners English research
+  # only (scripts are still translated).
+  languages:
+    es: {regions: Spain and Latin America, outlets: [El País, El Mundo, RTVE, La Vanguardia, Clarín, La Nación, El Tiempo, Milenio, BBC Mundo]}
+    fr: {regions: "France, Belgium, Switzerland and Canada", outlets: [Le Monde, Le Figaro, Libération, France 24, Franceinfo, Le Soir, Radio-Canada, La Presse]}
+    de: {regions: "Germany, Austria and Switzerland", outlets: [Der Spiegel, Die Zeit, FAZ, Süddeutsche Zeitung, Tagesschau, Deutsche Welle, Der Standard, NZZ]}
+    it: {regions: Italy and Switzerland, outlets: [Corriere della Sera, la Repubblica, La Stampa, ANSA, Il Sole 24 Ore, Rai News, RSI]}
+    pt: {regions: Brazil and Portugal, outlets: [Folha de S.Paulo, O Globo, Estadão, G1, Público, Expresso, RTP, Observador]}
+  lookback_hours: 24
+  min_stories: 5               # asking for more on a slow news day gets off-topic filler
+  max_stories: 12              # one shared call per topic: more stories cost little per user
+  dedupe_window_days: 3
+  headline_dup_threshold: 0.85 # headline-embedding similarity treated as the same story
+  update_min_hours: 6          # a similar story this much newer is kept as an update
+  max_attempts: 3              # API attempts (exponential backoff) per research call
+  backoff_base_sec: 2.0
+  max_pause_turns: 3
+  llm: {max_tokens: 16000, effort: medium, refusal_fallbacks: default}
+  search:                      # the web search tool used by step 2
+    anthropic_tool_type: web_search_20250305  # web_search_20260209 adds dynamic filtering on newer models
+    openai_tool_type: web_search
+    max_uses: 5
+    # Use allowed_domains OR blocked_domains (Anthropic rejects both at once; allowed wins here).
+    allowed_domains: []
+    blocked_domains: [pinterest.com, reddit.com, quora.com, medium.com, facebook.com, x.com,
+                      tiktok.com, youtube.com]
+
+clips:
+  min_seconds: 20
+  max_seconds: 60
+  words_per_minute: {default: 150, es: 160, it: 160, fr: 155, de: 140, pt: 155}
+  length_tolerance: 0.15
+  # base_adapt (cheapest): one script per story from the record, the other tones/languages
+  # adapted from it by SMALL_MODEL. per_combo: every tone/language written from the record.
+  # Measured comparison: app/pipeline/README.md
+  strategy: base_adapt
+  writer: {max_tokens: 4000, effort: low, refusal_fallbacks: default}
+  adapter: {max_tokens: 4000, effort: low}
+  verifier: {max_tokens: 3000, effort: low}
+  second_opinion: true         # a rejected script gets a 2nd check by WRITER_MODEL before a rewrite
+
+assemble:
+  lookback_hours: 48
+  seen_window_days: 14
+  # Settings page: each topic is daily, weekdays (Mon-Fri) or weekly, with its own minutes.
+  # The episode lasts the sum of the minutes of the topics playing that day, up to the cap.
+  weekly_weekday: 0            # weekly topics play on Mondays (0 = Monday ... 6 = Sunday)
+  weekly_lookback_hours: 168   # ...and pick from the whole week's unheard stories
+  max_episode_minutes: 30
+  recency_half_life_hours: 24
+  max_per_topic: 12            # safety cap; each topic is filled up to its own minutes
+  min_importance: 4            # skip filler the researcher scored 1-3 (of 10); shorter > padded
+  default_clip_seconds: 40     # duration estimate before a clip exists
+  frame_overhead_seconds: 25   # intro + outro estimate
+  transition_seconds: 4
+  max_refill_rounds: 3
+  gap_ms: 600
+  crossfade_ms: 150
+  target_dbfs: -16.0
+  sfx_offset_db: -8.0          # intro/transition/outro sounds (hearline/backend/sounds/) sit 8 dB under the voice
+  sfx_offsets_db: {transition: -3.0}  # the topic-change cue is louder, so a new topic is heard
+  topic_pause_ms: 700          # extra silence before the topic-change cue
+  export_format: mp3           # falls back to wav when ffmpeg is missing
+  mp3_bitrate: 64k            # mono speech: podcast quality, a third smaller than 96k
+  # Greeting, transitions and outro are shared phrases (dim_phrase_clip), written once by
+  # SMALL_MODEL and recorded once per voice. Outros rotate between this many variants.
+  phrase_llm: {max_tokens: 2000, effort: low}
+  outro_variants: 3
+  subtopic_boost: 1.0          # stories in the listener's subcategories score 2x (a focus, not a filter)
+  local_language_boost: 0.5    # stories researched in the listener's own language score 1.5x
+  # Slow news days, filled in this order (cheapest first, never invented):
+  #  1. unheard stories up to backfill_hours old (already scripted/recorded: free); recency
+  #     decay keeps today's news first, so they only fill what today leaves empty
+  #  2. up to max_explainers "Some context:" explainers from the Wikipedia background research,
+  #     each read right after the story it explains (never on its own, never naming Wikipedia)
+  #     stored for lesser-known terms (shared, fact-checked against Wikipedia, never repeated)
+  #  3. otherwise the episode is simply shorter
+  backfill_hours: 96
+  max_explainers: 0            # every story now carries its own curiosity from background
+                               # (step 3), so a separate background segment repeats it
+  explainer_score: 0.01
+  # One subject per episode: stories sharing >= 2 names (60% of the shorter list) and a
+  # headline similarity >= 0.45 are the same subject told twice; only the better one is read
+  # Accuracy review of the whole episode before it is recorded (app/pipeline/review.py):
+  # free checks (repeated sentences) + one SMALL_MODEL review of every segment against its
+  # story record (repetition, unsupported claims, off-topic background, contradictions).
+  # Flagged segments are removed and the episode re-planned; results are cached by content.
+  review: {enabled: true, max_tokens: 3000, effort: medium, rounds: 2, redundant_sentence_share: 0.7}
+  same_subject_min_names: 2
+  same_subject_name_share: 0.6
+  same_subject_min_similarity: 0.45
+  teasers: 3                   # "coming up" rundown after the greeting: shared one-line teasers
+                               # of the top stories (one per story x voice setting); 0 = off
+
+scheduler:
+  inactive_days: 14
+  default_delivery_hour: 7
+  poll_interval_sec: 2.0
+  lock_timeout_sec: 1800
+  max_attempts: 4
+  backoff_base_sec: 30
+  # Running jobs per type across ALL workers (a ceiling, not a target). Clip jobs are mostly
+  # LLM calls; paid voice requests are capped separately by tts.max_concurrent_requests.
+  concurrency: {research: 4, clip: 8, assemble: 4, maintenance: 1}
+  daily_budget_usd: 25.0
+  use_batches: false           # Message Batches API for research + clip jobs (50% off, slower)
+  batch_max_requests: 500
+  batch_poll_sec: 30
+  batch_timeout_sec: 86400
+  build_lead_hours: 3          # build episodes up to 3h before delivery, spread out (no 7:00 spike)
+  research_wait_margin_minutes: 15  # stop waiting for a topic's research 15 min before delivery
+  insert_chunk_size: 1000      # rows per bulk INSERT in the daily plan
+  plan_every_minutes: 60       # the worker re-runs the (idempotent) daily plan this often
+  worker_threads: 4            # jobs one worker process runs in parallel (they mostly wait on
+                               # LLM/voice/web calls); add worker tasks to scale further
+  clip_prefetch_top_k: 4       # pre-generate clips for the top-K stories per topic (null = all);
+                               # = assemble.max_per_topic, others are generated on demand
+
+embeddings:
+  provider: sentence-transformers   # sentence-transformers | hashing
+  model: sentence-transformers/all-MiniLM-L6-v2
+  hashing_dim: 256
+
+tts:
+  provider: mock               # mock | say (macOS, free) | polly | elevenlabs
+  sample_rate: 22050
+  mock_sample_rate: 8000
+  polly_engine: neural         # standard | neural | generative | long-form (price per engine)
+  elevenlabs_model: eleven_flash_v2_5   # or eleven_multilingual_v2 / eleven_v3 (2x price)
+  # Simultaneous voice requests per worker process (0 = no limit). ElevenLabs Flash v2.5
+  # allows Free 4, Starter 6, Creator 10, Pro 20, Scale/Business 30 (pay-as-you-go on a
+  # free plan: 3); Multilingual v2 / v3 half that. Set it to your plan's limit divided by
+  # the number of worker tasks, so requests wait here instead of failing with 429.
+  max_concurrent_requests: 4
+  # Voices and their provider mapping: config/voices.yaml
+
+# Daily clean-up, so fast-growing tables stay small (jobs/maintenance.py)
+maintenance:
+  heard_rows_keep_days: 30     # fact_episode_story: older rows move to storage/archive (>= 14-day repeat window)
+  cost_events_keep_days: 90    # fact_cost_event: raw rows; fact_cost_daily keeps the daily totals forever
+  done_jobs_keep_days: 7       # ops_job rows that finished
+  dead_jobs_keep_days: 30      # ops_job rows that failed for good (kept longer to investigate)

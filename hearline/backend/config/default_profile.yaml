@@ -1,0 +1,7 @@
+tone: conversational
+language: en
+voice: aria
+topics:
+  - {topic: technology, frequency: daily, target_minutes: 10}
+  - {topic: science, frequency: weekly, target_minutes: 15}
+  - {topic: world, frequency: weekdays, target_minutes: 5}

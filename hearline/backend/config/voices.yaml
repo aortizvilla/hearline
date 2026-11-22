@@ -1,0 +1,119 @@
+# Voices listeners can choose in Settings. The single place a voice is defined:
+#   - shown in Settings (label, style, gender, accent, preview sample)
+#   - mapped to a real voice per TTS provider (ElevenLabs voice id, Polly voice per language,
+#     macOS `say` voice for free local testing)
+# Loaded into the dim_voice table on startup (app/providers/voices.py), like seed_topics.yaml.
+# `key` is what a profile stores: never rename one; set `active: false` to retire it.
+# Remapping a provider voice is safe: clips are re-recorded with the new voice on next use.
+# Every extra voice multiplies recordings per story, so keep the list short.
+# `languages` gives each voice a native speaker per language, with its accent (Spain, Quebec,
+# Brazil...). Those are ElevenLabs Voice Library voices: they must be added to the ElevenLabs
+# account (`python -m app.cli check` lists any that aren't). Without one, the English voice
+# speaks that language.
+# Previews: python -m app.cli voice-previews (records `preview_text` once per voice and
+# language; Settings plays the one for the language selected).
+
+preview_text:
+  en: Good morning. This is your Hearline briefing, with the stories that matter to you today.
+  es: Buenos días. Este es tu resumen de Hearline, con las noticias que te importan hoy.
+  fr: Bonjour. Voici votre briefing Hearline, avec les actualités qui comptent pour vous aujourd'hui.
+  de: Guten Morgen. Hier ist dein Hearline-Briefing mit den Nachrichten, die heute für dich zählen.
+  it: Buongiorno. Ecco il tuo briefing Hearline, con le notizie che contano per te oggi.
+  pt: Bom dia. Este é o seu resumo Hearline, com as notícias que importam para você hoje.
+
+voices:
+  - key: aria
+    label: Aria
+    style: Warm and professional
+    gender: female
+    accent: American   # of its English; shown in Settings only for English
+    elevenlabs: XrExE9yKIg1WjnnlVkGX   # Matilda
+    polly: {en: Joanna, es: Lucia, fr: Lea, de: Vicki, it: Bianca, pt: Camila}
+    say: Samantha
+    say_by_language: {es: Monica, fr: Amelie, de: Anna, it: Alice, pt: Luciana}
+    languages:   # native speaker per language (ElevenLabs Voice Library, added to the account)
+      es: {elevenlabs: zl1Ut8dvwcVSuQSB9XkG, accent: Latin American, locale: es-AR}   # Ninoska
+      fr: {elevenlabs: 5OnMHwgTFgvPVwE8jP6B, accent: France, locale: fr-FR}   # Anaïs
+      de: {elevenlabs: lzvBSKYbNWDD0a6BaJSK, accent: Germany, locale: de-DE}   # Petra
+      it: {elevenlabs: RXoaSpLaWTEckJgPUBG3, accent: Italy, locale: it-IT}   # Tiziana
+      pt: {elevenlabs: fUAUU80st9SqdYx319Zk, accent: Brazil, locale: pt-BR}   # Luciana Cadar
+
+  - key: leo
+    label: Leo
+    style: Calm and trustworthy
+    gender: male
+    accent: American
+    elevenlabs: cjVigY5qzO86Huf0OWal   # Eric
+    polly: {en: Matthew, es: Sergio, fr: Remi, de: Daniel, it: Adriano, pt: Thiago}
+    say: Fred
+    say_by_language: {es: Jorge, fr: Thomas, de: Anna, it: Alice, pt: Luciana}
+    languages:   # native speaker per language (ElevenLabs Voice Library, added to the account)
+      es: {elevenlabs: 6VhI0BBMzbLqzPaeqUCz, accent: Spain, locale: es-ES}   # Victor
+      fr: {elevenlabs: nbiTBaMRdSobTQJDzIWm, accent: France, locale: fr-FR}   # Antoine
+      de: {elevenlabs: IWm8DnJ4NGjFI7QAM5lM, accent: Germany, locale: de-DE}   # Stephan
+      it: {elevenlabs: HuK8QKF35exsCh2e7fLT, accent: Italy, locale: it-IT}   # Carmelo La Rosa
+      pt: {elevenlabs: Qrdut83w0Cr152Yb4Xn3, accent: Brazil, locale: pt-BR}   # Paulo
+
+  - key: nova
+    label: Nova
+    style: Bright and upbeat
+    gender: female
+    accent: American
+    elevenlabs: cgSgspJ2msm6clMCkdW9   # Jessica
+    polly: {en: Ruth, es: Lupe, fr: Lea, de: Vicki, it: Bianca, pt: Vitoria}
+    say: Karen
+    say_by_language: {es: Paulina, fr: Amelie, de: Anna, it: Alice, pt: Luciana}
+    languages:   # native speaker per language (ElevenLabs Voice Library, added to the account)
+      es: {elevenlabs: x5IDPSl4ZUbhosMmVFTk, accent: Latin American, locale: es-CO}   # Lumina
+      fr: {elevenlabs: K7gx0ylJdff0yjM2uVQS, accent: Quebec, locale: fr-CA}   # Jeanne Mance
+      de: {elevenlabs: pMrwpTuGOma7Nubxs5jo, accent: Germany, locale: de-DE}   # Lea
+      it: {elevenlabs: uV2Bhcm1HwmAqPqkbjfl, accent: Italy, locale: it-IT}   # Sara
+      pt: {elevenlabs: m151rjrbWXbBqyq56tly, accent: Brazil, locale: pt-BR}   # Carla
+
+  - key: kai
+    label: Kai
+    style: Deep and reassuring
+    gender: male
+    accent: American
+    elevenlabs: nPczCjzI2devNBz1zQrb   # Brian
+    polly: {en: Stephen, es: Pedro, fr: Remi, de: Daniel, it: Adriano, pt: Thiago}
+    say: Ralph
+    say_by_language: {es: Jorge, fr: Thomas, de: Anna, it: Alice, pt: Luciana}
+    languages:   # native speaker per language (ElevenLabs Voice Library, added to the account)
+      es: {elevenlabs: gbTn1bmCvNgk0QEAVyfM, accent: Latin American, locale: es-MX}   # Enrique M. Nieto
+      fr: {elevenlabs: oziFLKtaxVDHQAh7o45V, accent: Quebec, locale: fr-CA}   # Frederic
+      de: {elevenlabs: TUKJhQmz3RPYBNAgC5A1, accent: Germany, locale: de-DE}   # German Narration
+      it: {elevenlabs: PSp7S6ST9fDNXDwEzX0m, accent: Italy, locale: it-IT}   # Alessandro
+      pt: {elevenlabs: 6pQlwCgfwffNdI3jjzM6, accent: Brazil, locale: pt-BR}   # Fernando Borges
+
+  - key: oliver
+    label: Oliver
+    style: Steady news anchor
+    gender: male
+    accent: British
+    elevenlabs: onwK4e9ZLuTAKqWW03F9   # Daniel
+    polly: {en: Brian, es: Sergio, fr: Remi, de: Daniel, it: Adriano, pt: Thiago}
+    say: Daniel
+    say_by_language: {es: Jorge, fr: Thomas, de: Anna, it: Alice, pt: Luciana}
+    languages:   # native speaker per language (ElevenLabs Voice Library, added to the account)
+      es: {elevenlabs: ZCh4e9eZSUf41K4cmCEL, accent: Spain, locale: es-ES}   # Emilio
+      fr: {elevenlabs: TGAegA0zNRi8I6nUdq3i, accent: France, locale: fr-FR}   # Adam
+      de: {elevenlabs: Cqbq4nsuUe1we6J45miU, accent: Germany, locale: de-DE}   # Helmut
+      it: {elevenlabs: o0wsljCf8AntveHvChcv, accent: Italy, locale: it-IT}   # Igor
+      pt: {elevenlabs: yLNlwWeETM7NDHPI4qEL, accent: Portugal, locale: pt-PT}   # Carlos
+
+  - key: iris
+    label: Iris
+    style: Clear and engaging
+    gender: female
+    accent: British
+    elevenlabs: Xb7hH8MSUJpSbSDYk0k2   # Alice
+    polly: {en: Amy, es: Lucia, fr: Lea, de: Vicki, it: Bianca, pt: Camila}
+    say: Flo (Inglés (RU))
+    say_by_language: {es: Monica, fr: Amelie, de: Anna, it: Alice, pt: Luciana}
+    languages:   # native speaker per language (ElevenLabs Voice Library, added to the account)
+      es: {elevenlabs: SDVJaMLoJa7wc3s2sn7d, accent: Spain, locale: es-ES}   # Lydia
+      fr: {elevenlabs: UaGvaD7NWzU5mJNoUqoY, accent: France, locale: fr-FR}   # Perle
+      de: {elevenlabs: WHaUUVTDq47Yqc9aDbkH, accent: Germany, locale: de-DE}   # Enniah
+      it: {elevenlabs: b8jhBTcGAq4kQGWmKprT, accent: Italy, locale: it-IT}   # Sami
+      pt: {elevenlabs: JGnWZj684pcXmK2SxYIv, accent: Portugal, locale: pt-PT}   # Claudia
