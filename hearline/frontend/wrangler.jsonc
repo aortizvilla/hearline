@@ -2,7 +2,7 @@
 // with VITE_STATIC_DEMO=1, then `npx wrangler deploy`). Only static files are served: no Worker
 // code, no keys. "name" must match the Worker's name in the Cloudflare dashboard.
 {
-  "name": "hearline-demo-7f3k",
+  "name": "hearline",
   "compatibility_date": "2026-11-01",
   "assets": {
     "directory": "./dist",

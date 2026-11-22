@@ -194,7 +194,7 @@ deploys from a private repo, and anyone with the link can open it.
 
    | Setting | Value |
    |---|---|
-   | Project name | `hearline-demo-7f3k` (must match `name` in `hearline/frontend/wrangler.jsonc`) |
+   | Project name | `hearline` (must match `name` in `hearline/frontend/wrangler.jsonc`) |
    | Build command | `npm run build` |
    | Deploy command | `npx wrangler deploy` |
    | Root directory | `hearline/frontend` |
@@ -203,7 +203,7 @@ deploys from a private repo, and anyone with the link can open it.
    `wrangler.jsonc` publishes `dist/` as static files (no Worker code) and serves `index.html`
    for app paths like `/settings`.
 4. **Deploy**. Every push to `main` then rebuilds the site, at
-   `https://hearline-demo-7f3k.<your-subdomain>.workers.dev` (shown in the Cloudflare dashboard).
+   `https://hearline.<your-subdomain>.workers.dev` (shown in the Cloudflare dashboard).
    Share that link.
 5. Optional, to limit it to people you name: Cloudflare Zero Trust > Access > add an application
    for the site's address with the emails allowed (free up to 50 users; they get a
