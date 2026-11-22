@@ -178,7 +178,7 @@ If you change `models.py`, add a migration: `cd hearline/backend && alembic revi
 
 **Postgres** (needed for more than one worker machine): `pip install -e '.[postgres]'` and set `DATABASE_URL=postgresql+psycopg://user:password@host:5432/hearline`. Job claiming then uses `FOR UPDATE SKIP LOCKED`, and the daily plan uses `INSERT ... ON CONFLICT DO NOTHING`.
 
-## Static demo (Cloudflare, free)
+## Static demo (Netlify, free)
 
 A server-free demo of the frontend: the demo listeners' profiles, episodes and audio are saved
 as files and the site reads them instead of the API. No database, no worker, no app keys. It
@@ -188,26 +188,18 @@ deploys from a private repo, and anyone with the link can open it.
    `cd hearline/backend && python -m app.cli export-demo` writes `hearline/frontend/demo-data/`
    (about 17 MB: only the `example.com` demo listeners from `app/dev/demo.py`). Commit it.
    Only demo builds include it; the production build leaves it out.
-2. Free Cloudflare account > **Workers & Pages** > **Create** > **Import a repository**: pick
-   this GitHub repo (Cloudflare asks GitHub for access to it; private repos work).
-3. Build settings:
+2. Free Netlify account (app.netlify.com, sign up with GitHub) > **Add new project** >
+   **Import an existing project** > **GitHub** > pick this repo (private repos work).
+3. Leave every setting as Netlify fills it: `netlify.toml` at the repo root sets the folder
+   (`hearline/frontend`), the build (`npm run build`, `VITE_STATIC_DEMO=1`, Node 22), the output
+   (`dist`) and the app routing. **Deploy**.
+4. The site is `https://<name>.netlify.app` (rename it under Site configuration > Change site
+   name). Every push to `main` rebuilds it. Share that link.
 
-   | Setting | Value |
-   |---|---|
-   | Project name | `hearline` (must match `name` in `hearline/frontend/wrangler.jsonc`) |
-   | Build command | `npm run build` |
-   | Deploy command | `npx wrangler deploy` |
-   | Root directory | `hearline/frontend` |
-   | Build variables | `VITE_STATIC_DEMO` = `1`, `NODE_VERSION` = `22` |
-
-   `wrangler.jsonc` publishes `dist/` as static files (no Worker code) and serves `index.html`
-   for app paths like `/settings`.
-4. **Deploy**. Every push to `main` then rebuilds the site, at
-   `https://hearline.<your-subdomain>.workers.dev` (shown in the Cloudflare dashboard).
-   Share that link.
-5. Optional, to limit it to people you name: Cloudflare Zero Trust > Access > add an application
-   for the site's address with the emails allowed (free up to 50 users; they get a
-   one-time code by email).
+Also set up, same build: Cloudflare Workers (`hearline/frontend/wrangler.jsonc`, Worker
+`hearline`). Some Spanish internet providers block ranges of Cloudflare addresses (notably
+during football broadcasts), which made the Cloudflare address unreachable from Spain, so
+Netlify is the default.
 
 Sign in with a demo email (`sofia@example.com`, `lucia@example.com`, `mateo@example.com`,
 `emma@example.com`, `james@example.com`). What a visitor changes stays in their browser. The
@@ -215,8 +207,8 @@ private podcast feed needs the full app, and the admin dashboard is a snapshot.
 Try it locally: `cd hearline/frontend && VITE_STATIC_DEMO=1 npm run dev`.
 
 **Keys never reach git**: app keys live only in `hearline/backend/.env` (git-ignored; the repo
-has `.env.example` with empty values). The demo needs no keys, and Cloudflare reads the repo
-through its own GitHub connection: no token is stored anywhere.
+has `.env.example` with empty values). The demo needs no keys, and Netlify reads the repo through
+its own GitHub connection: no token is stored anywhere.
 
 ## Test
 

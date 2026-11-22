@@ -1,0 +1,17 @@
+# Static demo on Netlify (free, private repos work): connect this repo in Netlify and deploy;
+# every setting is here. Builds the frontend with VITE_STATIC_DEMO=1, which reads the demo
+# snapshot in hearline/frontend/demo-data/ (no server, no database, no keys).
+[build]
+  base = "hearline/frontend"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  VITE_STATIC_DEMO = "1"
+  NODE_VERSION = "22"
+
+# React Router: app paths (/settings, /topics/film) get index.html; real files are served first
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
