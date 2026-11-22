@@ -188,13 +188,21 @@ deploys from a private repo, and anyone with the link can open it.
    `cd hearline/backend && python -m app.cli export-demo` writes `hearline/frontend/demo-data/`
    (about 17 MB: only the `example.com` demo listeners from `app/dev/demo.py`). Commit it.
    Only demo builds include it; the production build leaves it out.
-2. Free Cloudflare account: My Profile > API Tokens > Create token with *Cloudflare Pages: Edit*;
-   copy your Account ID from the dashboard.
-3. GitHub repo > Settings > Secrets and variables > Actions: secrets `CLOUDFLARE_API_TOKEN` and
-   `CLOUDFLARE_ACCOUNT_ID`; variable `CLOUDFLARE_PROJECT` (a non-obvious name such as
-   `hearline-demo-7f3k`, since the site is `https://<name>.pages.dev`).
-4. Push to `main` (or run *Demo site* from the Actions tab): `.github/workflows/demo.yml` builds
-   with `VITE_STATIC_DEMO=1` and deploys. Share the `pages.dev` link.
+2. Free Cloudflare account > **Workers & Pages** > **Create** > **Pages** > **Connect to Git**:
+   pick this GitHub repo (Cloudflare asks GitHub for access to it; private repos work).
+3. Build settings:
+
+   | Setting | Value |
+   |---|---|
+   | Project name | a non-obvious name, e.g. `hearline-demo-7f3k` (the site is `https://<name>.pages.dev`) |
+   | Production branch | `main` |
+   | Framework preset | None |
+   | Root directory | `hearline/frontend` |
+   | Build command | `npm run build` |
+   | Build output directory | `dist` |
+   | Environment variables | `VITE_STATIC_DEMO` = `1`, `NODE_VERSION` = `22` |
+
+4. **Save and Deploy**. Every push to `main` then rebuilds the site. Share the `pages.dev` link.
 5. Optional, to limit it to people you name: Cloudflare Zero Trust > Access > add an application
    for the `pages.dev` address with the emails allowed (free up to 50 users; they get a
    one-time code by email).
@@ -205,8 +213,8 @@ private podcast feed needs the full app, and the admin dashboard is a snapshot.
 Try it locally: `cd hearline/frontend && VITE_STATIC_DEMO=1 npm run dev`.
 
 **Keys never reach git**: app keys live only in `hearline/backend/.env` (git-ignored; the repo
-has `.env.example` with empty values). The Cloudflare token is a GitHub Actions secret
-(encrypted, never in the code), and the demo itself needs no keys.
+has `.env.example` with empty values). The demo needs no keys, and Cloudflare reads the repo
+through its own GitHub connection: no token is stored anywhere.
 
 ## Test
 
@@ -243,7 +251,7 @@ runs all three on every push once the repo is on GitHub.
 | `hearlineCDK/` | AWS as code (CDK): one EC2 server (API, worker, Postgres) behind CloudFront, S3, secrets in SSM; `deploy.sh` is the one command; `cdk/test_stack.py` checks the stack offline |
 | `hearline/frontend/src/` | React app: `pages/` (landing, home, topic, settings, subscription), `admin/` (the dashboard, its own page), `auth.tsx` (Clerk sign-in when `VITE_CLERK_PUBLISHABLE_KEY` is set; email sign-in in dev), `staticDemo.ts` (the server-free demo) |
 | `hearline/frontend/demo-data/` | The static demo snapshot (`app.cli export-demo`), only in demo builds |
-| `.github/workflows/` | `ci.yml` (backend tests + lint, frontend build + tests, stack test); `demo.yml` (the demo site on Cloudflare Pages) |
+| `.github/workflows/` | `ci.yml`: backend tests + lint, frontend build + tests, stack test (the demo site is built by Cloudflare Pages from the repo) |
 
 ## Proof of scale (mocked LLM/TTS, 200 users)
 
