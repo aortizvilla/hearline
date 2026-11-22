@@ -245,7 +245,7 @@ runs all three on every push once the repo is on GitHub.
 | `hearlineCDK/` | AWS as code (CDK): one EC2 server (API, worker, Postgres) behind CloudFront, S3, secrets in SSM; `deploy.sh` is the one command; `cdk/test_stack.py` checks the stack offline |
 | `hearline/frontend/src/` | React app: `pages/` (landing, home, topic, settings, subscription), `admin/` (the dashboard, its own page), `auth.tsx` (Clerk sign-in when `VITE_CLERK_PUBLISHABLE_KEY` is set; email sign-in in dev), `staticDemo.ts` (the server-free demo) |
 | `hearline/frontend/demo-data/` | The static demo snapshot (`app.cli export-demo`), only in demo builds |
-| `.github/workflows/` | `ci.yml`: backend tests + lint, frontend build + tests, stack test (the demo site is built by Cloudflare Pages from the repo) |
+| `.github/workflows/` | `ci.yml`: backend tests + lint, frontend build + tests, stack test (the demo site is built by Netlify from the repo, `netlify.toml`) |
 
 ## Proof of scale (mocked LLM/TTS, 200 users)
 
