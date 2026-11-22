@@ -116,7 +116,7 @@ flowchart TD
 ## Product surface
 
 - **Landing page**: what Hearline does, the film, three steps (topics, how it sounds with
-  playable voices, listen every morning), plan popup before sign-up; light/dark from the browser.
+  playable voices, listen every morning), plan popup before sign-up; light/dark switch (starts from the browser setting, remembered, shared with the app).
 - **App**: episodes, player, per-topic settings (frequency, minutes, subjects), style (language,
   voice, tone), subscription, private podcast feed.
 - **Admin** (`admin.<domain>`): KPIs, retention, costs, pipeline health; admins only.

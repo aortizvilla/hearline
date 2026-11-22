@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { api, type Interest, type Options, type Plan, type Plans, type VoiceOption } from "../api";
 import LanguageMenu from "../components/LanguageMenu";
 import Logo from "../components/Logo";
+import ThemeToggle from "../components/ThemeToggle";
 import { useI18n } from "../i18n";
 import { asset } from "../staticDemo";
 import { PlanCard } from "./Subscription";
@@ -36,7 +37,7 @@ function Film() {
     setSound(!sound);
   };
   return (
-    <figure className="relative overflow-hidden rounded-lg bg-[#E6DDCC]">
+    <figure className="relative overflow-hidden rounded-lg bg-[#E6DDCC] ring-1 ring-black/10 dark:ring-0">
       <video
         ref={video}
         className="block aspect-video w-full"
@@ -216,21 +217,7 @@ function PlanDialog({ plans, onClose, onContinue, onSignIn }: {
   );
 }
 
-// The landing page follows the browser's light / dark setting, live. Signed-in pages keep the
-// user's own choice (theme.ts); leaving the landing page restores it.
-function useBrowserTheme() {
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)"), root = document.documentElement;
-    const before = root.classList.contains("dark");
-    const apply = () => root.classList.toggle("dark", mq.matches);
-    apply();
-    mq.addEventListener("change", apply);
-    return () => { mq.removeEventListener("change", apply); root.classList.toggle("dark", before); };
-  }, []);
-}
-
 export default function Landing({ onStart, onSignIn }: Props) {
-  useBrowserTheme();
   const { t } = useI18n();
   const [options, setOptions] = useState<Options | null>(null);
   const [topics, setTopics] = useState<Interest[]>([]);
@@ -259,6 +246,7 @@ export default function Landing({ onStart, onSignIn }: Props) {
         <Logo />
         <nav className="flex items-center gap-2">
           <LanguageMenu />
+          <ThemeToggle />
           <button type="button" onClick={open} className="rounded-full px-4 py-2 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10">
             {t("auth.signIn")}
           </button>
